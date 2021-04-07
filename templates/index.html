@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block main %}
+
+  <!-- Main Banner -->
+  <div class="alert alert-danger">
+    <div class="container">
+      {{ user.id }}
+      {% include 'includes/form.html' with mt=15 mb=15 %}
+      
+    </div>
+  </div>
+  <!-- End Main Banner -->
+
+{% endblock %}

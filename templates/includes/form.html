@@ -1,0 +1,38 @@
+<form action="{% url 'search_page' %}" method="GET">
+    <div class="row g-3" style="margin-top: {{ mt }}%; margin-bottom: {{ mb }}%;">
+      <div class="col-md-12 col-lg-3">
+        <select name="district" class="form-select form-select-lg" aria-label=".form-select-lg">
+          <option value="" selected disabled>District</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-md-12 col-lg-3">
+        <select name="local" class="form-select form-select-lg" aria-label=".form-select-lg" id="locality-dropdown"
+          name="locality">
+          <option value="" selected disabled>Local Level</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-md-12 col-lg-3">
+        <select name="blood" class="form-select form-select-lg" required aria-label=".form-select-lg">
+          <option value="" selected disabled>Blood Group</option>
+          <option value="a_p">A+</option>
+          <option value="a_n">A-</option>
+          <option value="b_p">B+</option>
+          <option value="b_n">B-</option>
+          <option value="ab_p">AB+</option>
+          <option value="ab_n">AB-</option>
+          <option value="o_p">O+</option>
+          <option value="o_n">O-</option>
+        </select>
+      </div>
+      <div class="col-md-12 col-lg-3">
+        <button type="submit" class="btn btn-danger btn-lg" style="width: 100%;"><i class="fas fa-search"></i>
+          Find Donors</button>
+      </div>
+    </div>
+    </form>

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="body-form">
+  <main class="form-signin">
+    <form action="{% url 'login_page' %}" method="POST" class="{% if request.method == 'POST' %}was-validated{% else %}needs-validation{% endif %}">
+      {% csrf_token %}
+
+      <div class="mb-5 text-center text-danger display-3">
+        <i class="fas fa-heartbeat"></i>
+      </div>
+
+      {% if form.non_field_errors %}
+        {% for n_error in form.non_field_errors %}
+          <div class="alert alert-danger">{{ n_error|escape }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {% for form_field in form %}
+
+        {% if form_field.errors %}
+          {% for error in form_field.errors %}
+            <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+          {% endfor %}
+        {% endif %}
+
+        <div class="mb-2 form-floating">
+          {{ form_field }}
+          {{ form_field.label_tag }}
+        </div>
+
+        {% if form_field.help_text %}
+          <div class="text-secondary">{{ form_field.help_text|safe }}</div>
+        {% endif %}
+
+      {% endfor %}
+
+      {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+      {% endif%}
+
+      <button class="w-100 btn btn-lg btn-danger" type="submit">Login</button>
+
+      <p class="mt-5 mb-3 text-center text-muted">New Here? <a href="{% url 'register_page' %}">Register</a></p>
+
+    </form>
+
+  </main>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block main %}
+
+    <!-- Main Banner -->
+    <div class="container my-5">
+        
+        {% include 'includes/form.html' with mt=3 mb=3 %}
+          
+        <div class="alert alert-danger my-5">
+            Showing Results: <strong>AB+</strong> in <strong>District, Place</strong>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+            {% for user in users %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ user.display_photo.url }}" class="card-img-top">
+                    <div class="card-body ">
+                        <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                        <p class="card-text">
+                            Blood Group: <strong>{{ user.get_blood_group_display }}</strong> <br>
+                            District: <strong>{{ user.district }}</strong> <br>
+                            Local Level: <strong>{{ user.local_level }}</strong>
+                        </p>
+                        <a href="#" class="btn btn-danger">View Profile</a>
+                    </div>
+                </div>        
+            </div>
+            {% endfor %}
+
+        </div>
+        
+    </div>
+    <!-- End Main Banner -->
+
+
+    {% endblock %}

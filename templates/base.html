@@ -1,0 +1,106 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>#</title>
+  <meta name="keywords" content="#" />
+  <meta name="description" content="#" />
+  <meta name="author" content="#" />
+
+  <meta property="og:title" content="#" />
+  <meta property="og:url" content="#" />
+  <meta property="og:description" content="#" />
+  <meta property="og:image" content="#" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="#" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:site" content="#" />
+  <meta property="twitter:title" content="#" />
+  <meta property="twitter:image" content="#" />
+  <meta property="twitter:url" content="#" />
+  <meta name="twitter:image:alt" content="#" />
+
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!-- Page Wise Extra Styles -->
+  {% block styles %}
+  {% endblock %}
+
+</head>
+
+<body>
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Online Blood Bank</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Emergencies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Donation Guides</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  {% block main %}
+  {% endblock %}
+
+  <footer class="mt-auto py-3 alert-danger">
+    <div class="container text-center">
+      <span class="text-muted">&copy; 2021, Online Blood Bank</span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+
+  <!-- Custom Script -->
+  <script src="{% static 'js/app.js' %}"></script>
+
+  <!-- Page Wise Extra Script -->
+  {% block scripts %}
+  {% endblock %}
+
+</body>
+
+</html>

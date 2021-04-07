@@ -1,0 +1,144 @@
+{% extends 'base.html' %} 
+
+{% block main %}
+
+<!-- Main Banner -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2 class="display-3 fw-bold">
+        {{ request.user.first_name }} {{ request.user.last_name }}
+      </h2>
+    </div>
+    <div class="col-lg-6">
+      <div class="display-6 form-check form-switch">
+        <input {% if request.user.is_donor %} checked {% endif %} class="form-check-input" type="checkbox"
+          id="profilestatus" />
+        <label class="form-check-label" for="profilestatus">List as Donor</label>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row my-2">
+    <div class="col-lg-6">
+      <img src="{{ request.user.display_photo.url }}" class="img-fluid" />
+      <hr />
+      <form class="row g-3">
+        <div class="col-auto">
+          <input class="form-control" type="file" id="formFile" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-danger mb-3">Upload</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-6">
+      <p class="display-6">
+        Blood Group:
+        <strong>{{ request.user.get_blood_group_display }}</strong> <br />
+        Address:
+        <strong>{{ request.user.district }}, {{ request.user.local_level }}</strong>
+        <br />
+        Gender: <strong>{{ request.user.get_gender_display }}</strong> <br />
+        Age: <strong>{{ request.user.age }} YO </strong> <br />
+      </p>
+      <button class="btn btn-lg btn-danger">Edit Details</button>
+    </div>
+  </div>
+
+  <hr class="my-5" />
+
+  <div class="row my-2">
+    <div class="col-lg-6">
+      <h2 class="text-danger">Donation History</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="text-danger">Request History</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Blood Group</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- End Main Banner -->
+
+{% endblock %} 
+
+{% block scripts %}
+
+<script>
+  $("#profilestatus").change(function () {
+    $.ajax({
+      headers: {
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+      url: "/ajax/change_is_donor/",
+      method: "POST",
+      success: function (data) {
+        if (data.result) {
+          alert("Successfully Changed!");
+        } else {
+          alert("Some Error Occurred!");
+        }
+      },
+      error: function () {
+        alert("Cannot Make Connection!");
+      }
+    });
+  });
+</script>
+
+{% endblock %}
