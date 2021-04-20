@@ -44,14 +44,201 @@
         Gender: <strong>{{ request.user.get_gender_display }}</strong> <br />
         Age: <strong>{{ request.user.age }} YO </strong> <br />
       </p>
-      <button class="btn btn-lg btn-danger">Edit Details</button>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updateProfieModal">
+        Edit Details
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="updateProfieModal" tabindex="-1" aria-labelledby="updateProfieModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="updateProfieModalLabel">Update Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+              <form novalidate action="{% url 'dashboard_page' %}" method="POST">
+                {% csrf_token %}
+    
+                {% if form.non_field_errors %}
+                    {% for n_error in form.non_field_errors %}
+                        <div class="alert alert-danger">{{ n_error|escape }}</div>
+                    {% endfor %}
+                {% endif %}
+    
+                <div class="row g-3">
+    
+                    <div class="col-12">
+                        {{ form.email.label_tag }}
+    
+                        {{ form.email }}
+    
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.email.help_text %}
+                            <div class="text-secondary">{{ form.email.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.first_name.label_tag }}
+    
+                        {{ form.first_name }}
+    
+                        {% if form.first_name.errors %}
+                            {% for error in form.first_name.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.first_name.help_text %}
+                            <div class="text-secondary">{{ form.first_name.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.last_name.label_tag }}
+    
+                        {{ form.last_name }}
+    
+                        {% if form.last_name.errors %}
+                            {% for error in form.last_name.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.last_name.help_text %}
+                            <div class="text-secondary">{{ form.last_name.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.blood_group.label_tag }}
+    
+                        {{ form.blood_group }}
+    
+                        {% if form.blood_group.errors %}
+                            {% for error in form.blood_group.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.blood_group.help_text %}
+                            <div class="text-secondary">{{ form.blood_group.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.gender.label_tag }}
+    
+                        {{ form.gender }}
+    
+                        {% if form.gender.errors %}
+                            {% for error in form.gender.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.gender.help_text %}
+                            <div class="text-secondary">{{ form.gender.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.phone_number.label_tag }}
+    
+                        {{ form.phone_number }}
+    
+                        {% if form.phone_number.errors %}
+                            {% for error in form.phone_number.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.phone_number.help_text %}
+                            <div class="text-secondary">{{ form.phone_number.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.date_of_birth.label_tag }}
+    
+                        {{ form.date_of_birth }}
+    
+                        {% if form.date_of_birth.errors %}
+                            {% for error in form.date_of_birth.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.date_of_birth.help_text %}
+                            <div class="text-secondary">{{ form.date_of_birth.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.district.label_tag }}
+    
+                        {{ form.district }}
+    
+                        {% if form.district.errors %}
+                            {% for error in form.district.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.district.help_text %}
+                            <div class="text-secondary">{{ form.district.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="col-sm-6">
+                        {{ form.local_level.label_tag }}
+                        
+                        {{ form.local_level }}
+    
+                        {% if form.local_level.errors %}
+                            {% for error in form.local_level.errors %}
+                                <div style="text-align: left  !important;" class="text-danger">{{ error|escape }}</div>
+                            {% endfor %}
+                        {% endif %}
+    
+                        {% if form.local_level.help_text %}
+                            <div class="text-secondary">{{ form.local_level.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+    
+                </div>
+    
+                <button class="w-100 mt-3 btn btn-danger btn-lg" type="submit">Update</button>
+    
+            </form>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal End -->
+
+      <div class="my-3">
+        <a class="btn btn-danger btn-lg" href="{% url 'manage_request_page' %}">Manage Requests</a>
+      </div>
+
+
     </div>
   </div>
 
   <hr class="my-5" />
 
   <div class="row my-2">
-    <div class="col-lg-6">
+    <div class="col-12">
       <h2 class="text-danger">Donation History</h2>
       <table class="table">
         <thead>
@@ -59,58 +246,24 @@
             <th scope="col">#</th>
             <th scope="col">Date</th>
             <th scope="col">Location</th>
+            <th scope="col">Requested By</th>
           </tr>
         </thead>
         <tbody>
+
+          {% for d in donated %}
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>@mdo</td>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ d.for_date }}</td>
+            <td>{{ d.district }}, {{ d.local_level }}</td>
+            <td> <a class="alert-link" style="text-decoration: none;" href="{% url 'user_page' d.requested_by.id %}">{{ d.requested_by.first_name }} {{ d.requested_by.last_name }}</a> </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
+         
         </tbody>
       </table>
     </div>
-    <div class="col-lg-6">
-      <h2 class="text-danger">Request History</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Blood Group</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+
   </div>
 </div>
 <!-- End Main Banner -->
@@ -120,6 +273,7 @@
 {% block scripts %}
 
 <script>
+
   $("#profilestatus").change(function () {
     $.ajax({
       headers: {
@@ -127,18 +281,17 @@
       },
       url: "/ajax/change_is_donor/",
       method: "POST",
-      success: function (data) {
-        if (data.result) {
-          alert("Successfully Changed!");
-        } else {
-          alert("Some Error Occurred!");
-        }
-      },
       error: function () {
         alert("Cannot Make Connection!");
       }
     });
   });
+
+  {% if request.method == "POST" %}
+    var myModal = new bootstrap.Modal(document.getElementById('updateProfieModal'), { keyboard: false });
+    myModal.show();
+  {% endif %}
+
 </script>
 
 {% endblock %}

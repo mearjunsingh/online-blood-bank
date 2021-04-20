@@ -1,49 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from django.core.paginator import Paginator
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, ChangePasswordForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
-
-def home_page(request):
-    user = User.objects.get(email='bibekmoktan1222@gmail.com')
-    return render(request, 'index.html', {'user' : user })
+from core.models import Request
 
 
-def search_page(request):
-    if 'blood' and 'district' and 'local' in request.GET:
-        blood = request.GET.get('blood')
-        district = request.GET.get('district')
-        local = request.GET.get('local')
-        b_url = '?blood=' + blood + '&district=' + district + '&local=' + local + '&'
-        post_list = User.objects.filter(is_donor=True).filter(blood_group__iexact=blood).filter(district__iexact=district).filter(local_level__iexact=local).order_by('-last_login')
-    else:
-        b_url = '?'
-        post_list = User.objects.all().order_by('-last_login')
-    if post_list.count() != 0:
-        paginator = Paginator(post_list, 10)
-        if 'page' in request.GET:
-            q = request.GET['page']
-            if q is not None and q != '' and q != '0':
-                page_number = request.GET.get('page')
-            else:
-                page_number = 1
-        else:
-            page_number = 1
-        users = paginator.get_page(page_number)
-        return render(request, 'result.html', {'users' : users, 'base_url' : b_url})
-    else:
-        return render(request, 'result.html')
-    return render(request, 'result.html')
+def user_page(request, id):
+    user = get_object_or_404(User,id=id)
+    return render(request, 'profile.html', {'user' : user})
 
 
-def user_page(request):
-    return render(request, 'profile.html')
-
-# finished
 def login_page(request):
     if request.user.is_authenticated:
         return redirect('dashboard')
@@ -61,7 +30,7 @@ def login_page(request):
                 return redirect('home_page')
         return render(request, 'login.html', {'form' : form})
 
-# finished
+
 def register_page(request):
     if request.user.is_authenticated:
         return redirect('dashboard_page')
@@ -69,10 +38,46 @@ def register_page(request):
         form = RegisterForm(request.POST or None)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('login_page')
         return render(request, 'register.html', {'form': form})
+
+
+def logout_page(request):
+    if not request.user.is_authenticated:
+        raise Http404()
+    else:
+        logout(request)
+        return redirect('home_page')
 
 
 @login_required()
 def dashboard_page(request):
-    return render(request, 'dashboard.html')
+    donated = Request.objects.filter(donated_by=request.user).order_by('-id')
+    requested = Request.objects.filter(requested_by=request.user).order_by('-id')
+    instance = get_object_or_404(User, email=request.user.email)
+    form = UserChangeForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard_page')
+    context = {
+        'form' : form,
+        'donated' : donated,
+        'requested' : requested
+    }
+    return render(request, 'dashboard.html', context)
+
+
+@login_required()
+def manage_request_page(request):
+    requested = Request.objects.filter(requested_by=request.user).order_by('-id')
+    return render(request, 'requests.html', {'requested' : requested})
+
+
+@login_required()
+def changePassword_page(request):
+    form = ChangePasswordForm(user=request.user, data=request.POST or None)
+    if form.is_valid():
+        form.save()
+        update_session_auth_hash(request, form.user)
+        return redirect('dashboard_page')
+    return render(request, 'password.html', {'form' : form})

@@ -1,90 +1,21 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>#</title>
-    <meta name="keywords" content="#" />
-    <meta name="description" content="#" />
-    <meta name="author" content="#" />
-
-    <meta property="og:title" content="#" />
-    <meta property="og:url" content="#" />
-    <meta property="og:description" content="#" />
-    <meta property="og:image" content="#" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="#" />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:site" content="#" />
-    <meta property="twitter:title" content="#" />
-    <meta property="twitter:image" content="#" />
-    <meta property="twitter:url" content="#" />
-    <meta name="twitter:image:alt" content="#" />
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
-
-</head>
-
-<body>
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Online Blood Bank</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Emergencies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Donation Guides</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Navbar End -->
+{% extends 'base.html' %}
+{% block main %}
 
     <!-- Main Banner -->
     <div class="container my-5">
+
+      
         <div class="row my-2">
             <div class="col-lg-6">
-                <img src="images/holder.jpg" class="img-fluid">
+                <img src="{{ user.display_photo.url }}" class="img-fluid">
             </div>
             <div class="col-lg-6">
-                <h2 class="display-3 fw-bold">Bibek Moktan</h2>
+                <h2 class="display-3 fw-bold">{{ user.first_name }} {{ user.last_name }}</h2>
                 <p class="display-6">
-                    Blood Group: <strong>B+</strong> <br>
-                    Address: <strong>Ilam, Kanyam</strong> <br>
-                    Gender: <strong>Male</strong> <br>
-                    Age: <strong>20</strong> <br>
+                    Blood Group: <strong>{{ user.get_blood_group_display }}</strong> <br>
+                    Address: <strong>{{ user.district }}, {{ user.local_level }}</strong> <br>
+                    Gender: <strong>{{ user.get_gender_display }}</strong> <br>
+                    Age: <strong>{{ user.age }}</strong>
                 </p>
                 <button class="btn btn-lg btn-danger">Send Request</button>
             </div>
@@ -154,17 +85,8 @@
                   </table>
             </div>
         </div>
-    </div>
-    <!-- End Main Banner -->
-
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
-
-    <!-- Custom Script -->
-    <script src="js/form.js"></script>
-
-</body>
-
-</html>
+      </div>
+      <!-- End Main Banner -->
+  
+  
+      {% endblock %}

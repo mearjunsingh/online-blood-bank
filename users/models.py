@@ -53,7 +53,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_donor = models.BooleanField(_('Is Donor'), default=True)
     district = models.CharField(_('District'), max_length=254)
     local_level = models.CharField(_('Local Level'), max_length=254)
-    phone_number = models.IntegerField(_('Phone Number'), unique=True)
+    phone_number = models.CharField(_('Phone Number'), max_length=10, unique=True)
     date_joined = models.DateTimeField(_('Date Joined'), default=timezone.now)
     is_active = models.BooleanField(_('Is Active'), default=True)
     is_staff = models.BooleanField(_('Is Staff'), default=False)
@@ -73,3 +73,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def age(self):
         import datetime
         return int((datetime.date.today() - self.date_of_birth).days / 365.25  )
+    
+    class Meta:
+        verbose_name = 'User'

@@ -1,14 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block main %}
 
   <!-- Main Banner -->
   <div class="alert alert-danger">
     <div class="container">
-      {{ user.id }}
       {% include 'includes/form.html' with mt=15 mb=15 %}
       
     </div>
   </div>
   <!-- End Main Banner -->
+
+  <section>
+    <div class="container my-5">
+
+      <div class="mb-5 card text-center">
+        <div class="card-body">
+          <h1 class="card-title mt-2 text-danger fw-bold display-3">About Us</h1>
+          <p class="card-text p-3">
+            <img src="{% static 'images/lead_blood.png' %}" class="img-fluid rounded">
+          </p>
+          <p class="card-text px-5 lead" style="text-align: justify;">A single donation can save three lives. One blood donation provides different blood components that can help up to three different people. We are a service motive for the welfare of the society. We work to encourage and inspire people to donate blood and provide fresh blood to needy one in need to save life.</p>
+        </div>
+      </div>
+
+      <div class="mt-5 card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Contact Us</h5>
+          <p class="card-text">Have any questions or suggestions?</p>
+          <a href="#" class="btn btn-primary">Click Here</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
 {% endblock %}
