@@ -2,12 +2,16 @@
 {% block main %}
 
     <!-- Main Banner -->
-    <div class="container my-5">
+    <div class="container my-5 vh-100">
         
         {% include 'includes/form.html' with mt=3 mb=3 %}
           
         <div class="alert alert-danger my-5">
-            Showing Results: <strong>{{ request.GET.blood }}</strong> in <strong>{{ request.GET.district }}, {{ request.GET.local }}</strong>
+            {% if request.GET.blood and request.GET.district and request.GET.local %}
+                Showing Results: <strong>{{ request.GET.blood }}</strong> in <strong>{{ request.GET.district }}, {{ request.GET.local }}</strong>
+            {% else %}
+                Showing all available donors
+            {% endif %}
         </div>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -26,6 +30,10 @@
                         <a href="{% url 'user_page' user.id %}" class="btn btn-danger">View Profile</a>
                     </div>
                 </div>        
+            </div>
+            {% empty %}
+            <div class="container text-center mt-5" style="width: 100%;">
+                <span class="display-3">No any donors found.</span>
             </div>
             {% endfor %}
 

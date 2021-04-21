@@ -11,7 +11,7 @@ def home_page(request):
 
 
 def search_page(request):
-    if 'blood' and 'district' and 'local' in request.GET:
+    if 'blood' in request.GET and 'district' in request.GET and 'local' in request.GET:
         blood = request.GET.get('blood')
         district = request.GET.get('district')
         local = request.GET.get('local')
