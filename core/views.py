@@ -6,8 +6,7 @@ from django.core.paginator import Paginator
 
 
 def home_page(request):
-    user = User.objects.get(email='bibekmoktan1222@gmail.com')
-    return render(request, 'index.html', {'user' : user })
+    return render(request, 'index.html')
 
 
 def search_page(request):
