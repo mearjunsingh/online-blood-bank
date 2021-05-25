@@ -1,21 +1,18 @@
 import uuid
-import sys
-from PIL import Image
 from io import BytesIO
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from PIL import Image
+from django.core.files import File
 
 
-def upload_image_path(instance, filename):
+def user_profile_image_file(instance, filename):
+    """Generate file path for new recipe image"""
     ext = filename.split('.')[-1]
     filename = '%s.%s' % (uuid.uuid4(), ext)
     return f'{instance.id}/{filename}'
 
-
-def compressImage(uploadedImage):
-    imageTemproary = Image.open(uploadedImage)
-    outputIoStream = BytesIO()
-    imageTemproaryResized = imageTemproary.resize( (400, 300) ) 
-    imageTemproaryResized.save(outputIoStream , format='JPEG', quality=40)
-    outputIoStream.seek(0)
-    uploadedImage = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
-    return uploadedImage
+def compress_image_on_upload(image):
+    im = Image.open(image)
+    im_io = BytesIO()
+    im.save(im_io, 'JPEG', quality=70)
+    new_image = File(im_io, name=image.name)
+    return new_image

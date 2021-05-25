@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='customuser',
             name='display_photo',
-            field=models.ImageField(default='default.png', upload_to=users.utils.upload_image_path, verbose_name='Display Photo'),
+            field=models.ImageField(default='default.png', upload_to=users.utils.user_profile_image_file, verbose_name='Display Photo'),
         ),
     ]

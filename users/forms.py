@@ -10,7 +10,28 @@ User = get_user_model()
 from PIL import Image
 
 
+GENDERS = (
+    ('', 'Choose One'),
+    ('M', 'Male'),
+    ('F', 'Female'),
+    ('O', 'Others'),
+)
+
+BLOOD_GROUPS = (
+    ('', 'Choose One'),
+    ('AP', 'A+'),
+    ('AN', 'A-'),
+    ('BP', 'B+'),
+    ('BN', 'B-'),
+    ('ABP', 'AB+'),
+    ('ABN', 'AB+'),
+    ('OP', 'O+'),
+    ('ON', 'O-'),
+)
+
+
 class LoginForm(AuthenticationForm):
+
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
         self.label_suffix = ""
@@ -32,27 +53,10 @@ class LoginForm(AuthenticationForm):
 
 
 class RegisterForm(UserCreationForm):
+
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.label_suffix = ""
-
-    GENDERS = (
-        ('', 'Choose One'),
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-
-    BLOOD_GROUPS = (
-        ('', 'Choose One'),
-        ('A_P', 'A+'),
-        ('A_N', 'A-'),
-        ('B_P', 'B+'),
-        ('B_N', 'B-'),
-        ('AB_P', 'AB+'),
-        ('AB_N', 'AB+'),
-        ('O_P', 'O+'),
-        ('O_N', 'O-'),
-    )
 
     email = forms.EmailField(label='Email Address', widget=forms.EmailInput(
         attrs={
@@ -131,24 +135,6 @@ class UserChangeForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)
         self.label_suffix = ""
-
-    GENDERS = (
-        ('', 'Choose One'),
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-
-    BLOOD_GROUPS = (
-        ('', 'Choose One'),
-        ('A_P', 'A+'),
-        ('A_N', 'A-'),
-        ('B_P', 'B+'),
-        ('B_N', 'B-'),
-        ('AB_P', 'AB+'),
-        ('AB_N', 'AB+'),
-        ('O_P', 'O+'),
-        ('O_N', 'O-'),
-    )
 
     email = forms.EmailField(label='Email Address', widget=forms.EmailInput(
         attrs={
