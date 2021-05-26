@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="body-form vh-100">
+  <main class="form-signin">
+    
+    {% if msg %}
+      <div class="alert alert-danger">{{ msg }}</div>
+    {% endif %}
+
+    <form novalidate action="{% url 'submit_request' %}" method="POST">
+
+      {% include 'includes/general-form.html' %}
+
+      <button class="w-100 btn btn-lg btn-danger" type="submit">Submit Request</button>
+
+    </form>
+
+  </main>
+</div>
+
+{% endblock %}

@@ -69,8 +69,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return int((datetime.date.today() - self.date_of_birth).days / 365.25)
     
     def save(self, *args, **kwargs):
-        new_image = utils.compress_image_on_upload(self.display_photo)
-        self.display_photo = new_image
+        if not self.id:
+            new_image = utils.compress_image_on_upload(self.display_photo)
+            self.display_photo = new_image
         super().save(*args, **kwargs)
     
     def __str__(self):

@@ -80,4 +80,4 @@ def changePassword_page(request):
         form.save()
         update_session_auth_hash(request, form.user)
         return redirect('dashboard_page')
-    return render(request, 'password.html', {'form' : form})
+    return render(request, 'change-password.html', {'form' : form})
