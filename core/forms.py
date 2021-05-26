@@ -3,19 +3,6 @@ from django.db.models import fields
 from . import models
 
 
-BLOOD_GROUPS = (
-    ('', 'Choose One'),
-    ('AP', 'A+'),
-    ('AN', 'A-'),
-    ('BP', 'B+'),
-    ('BN', 'B-'),
-    ('ABP', 'AB+'),
-    ('ABN', 'AB+'),
-    ('OP', 'O+'),
-    ('ON', 'O-'),
-)
-
-
 class RequestForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -27,7 +14,7 @@ class RequestForm(forms.ModelForm):
             'class': 'form-control',
             'placeholder': 'Blood Group'
         }
-    ), choices=BLOOD_GROUPS)
+    ))
 
     class Meta:
         model = models.Request
