@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.core.paginator import Paginator
@@ -8,6 +8,20 @@ from django.contrib.auth.decorators import login_required
 
 def home_page(request):
     return render(request, 'index.html')
+
+
+def user_page(request, id):
+    user = get_object_or_404(User, id=id)
+    form = forms.RequestUser(request.POST or None)
+    msg = None
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.requested_by = request.user
+        obj.donated_by = user
+        obj.blood_group = user.blood_group
+        obj.save()
+        msg = 'Successfull Submitted.'
+    return render(request, 'profile.html', {'user' : user, 'form': form, 'msg': msg})
 
 
 def search_page(request):

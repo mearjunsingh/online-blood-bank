@@ -24,3 +24,19 @@ class RequestForm(forms.ModelForm):
             'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
             'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
         }
+
+
+class RequestUser(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(RequestUser, self).__init__(*args, **kwargs)
+        self.label_suffix = ""
+
+    class Meta:
+        model = models.Request
+        fields = ['for_date', 'district', 'local_level']
+        widgets = {
+            'for_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'type': 'date'}),
+            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
+            'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
+        }

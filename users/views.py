@@ -8,11 +8,6 @@ from django.contrib.auth.decorators import login_required
 from core.models import Request
 
 
-def user_page(request, id):
-    user = get_object_or_404(User,id=id)
-    return render(request, 'profile.html', {'user' : user})
-
-
 def login_page(request):
     if request.user.is_authenticated:
         return redirect('dashboard')

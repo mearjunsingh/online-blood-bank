@@ -17,7 +17,40 @@
                     Gender: <strong>{{ user.get_gender_display }}</strong> <br>
                     Age: <strong>{{ user.age }}</strong>
                 </p>
-                <button class="btn btn-lg btn-danger">Send Request</button>
+                
+              
+                <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updateProfieModal">
+                    Send Request
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="updateProfieModal" tabindex="-1" aria-labelledby="updateProfieModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="updateProfieModalLabel">Update Profile</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          
+                          <form novalidate action="{% url 'user_page' user.id %}" method="POST">
+                          
+                            {% include 'includes/general-form.html' %}
+
+                            <button class="w-100 mt-3 btn btn-danger btn-lg" type="submit">RequeSt DONOR</button>
+                
+                        </form>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modal End -->
+
+
+
+
             </div>
         </div>
 
