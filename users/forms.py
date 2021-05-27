@@ -17,18 +17,6 @@ GENDERS = (
     ('O', 'Others'),
 )
 
-BLOOD_GROUPS = (
-    ('', 'Choose One'),
-    ('AP', 'A+'),
-    ('AN', 'A-'),
-    ('BP', 'B+'),
-    ('BN', 'B-'),
-    ('ABP', 'AB+'),
-    ('ABN', 'AB+'),
-    ('OP', 'O+'),
-    ('ON', 'O-'),
-)
-
 
 class LoginForm(AuthenticationForm):
 
@@ -95,12 +83,6 @@ class RegisterForm(UserCreationForm):
             'placeholder': 'Gender'
         }
     ), choices=GENDERS)
-    blood_group = forms.ChoiceField(label='Blood Group', widget=forms.Select(
-        attrs={
-            'class': 'form-control',
-            'placeholder': 'Blood Group'
-        }
-    ), choices=BLOOD_GROUPS)
     district = forms.CharField(label='District', widget=forms.TextInput(
         attrs={
             'class': 'form-control',
@@ -173,12 +155,6 @@ class UserChangeForm(UserChangeForm):
             'placeholder': 'Gender'
         }
     ), choices=GENDERS)
-    blood_group = forms.ChoiceField(label='Blood Group', widget=forms.Select(
-        attrs={
-            'class': 'form-control',
-            'placeholder': 'Blood Group'
-        }
-    ), choices=BLOOD_GROUPS)
     district = forms.CharField(label='District', widget=forms.TextInput(
         attrs={
             'class': 'form-control',

@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from . import utils
+from core.models import Blood
 
 
 class CustomUserManager(BaseUserManager):
@@ -29,16 +30,6 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    BLOOD_GROUPS = (
-        ('AP', 'A+'),
-        ('AN', 'A-'),
-        ('BP', 'B+'),
-        ('BN', 'B-'),
-        ('ABP', 'AB+'),
-        ('ABN', 'AB+'),
-        ('OP', 'O+'),
-        ('ON', 'O-'),
-    )
     GENDERS = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -50,7 +41,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     display_photo = models.ImageField(_('Display Photo'), upload_to=utils.user_profile_image_file, default='default.png')
     date_of_birth = models.DateField(_('Date Of Birth'))
     gender = models.CharField(_('Gender'), max_length=1, choices=GENDERS)
-    blood_group = models.CharField(max_length=3, choices=BLOOD_GROUPS)
+    blood_group = models.ForeignKey(Blood, on_delete=models.RESTRICT)
     is_donor = models.BooleanField(_('Is Donor'), default=True)
     district = models.CharField(_('District'), max_length=254)
     local_level = models.CharField(_('Local Level'), max_length=254)

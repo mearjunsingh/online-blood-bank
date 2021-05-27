@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.deletion import RESTRICT
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 from django.utils.text import slugify
 
 
