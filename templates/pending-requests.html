@@ -1,0 +1,71 @@
+{% extends 'base.html' %} 
+
+{% block main %}
+
+<!-- Main Banner -->
+<div class="container my-5">
+  <div class="row my-2">
+
+    <div class="col-12">
+      <h2 class="text-danger">Pending Requests</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Requested Date</th>
+            <th scope="col">Donation Date</th>
+            <th scope="col">Blood Group</th>
+            <th scope="col">Location</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for r in blood_requests %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ r.requested_date }}</td>
+            <td>{{ r.for_date }}</td>
+            <td>{{ r.blood_group.group }}</td>
+            <td>{{ r.district }}, {{ r.local_level }}</td>
+            <td>
+                {% if r.requested_by == request.user %}
+                    <buton class="btn btn-secondary btn-sm">
+                        Offer Help
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#offerHelp{{ r.id }}">
+                        Offer Help
+                    </button>
+
+                    <div class="modal fade" id="offerHelp{{ r.id }}" tabindex="-1" aria-labelledby="offerHelp{{ r.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="offerHelpLabel{{ r.id }}">Are you sure? This action cannot be undone!</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <b>{{ r.blood_group.group }}</b> in <b>{{ r.district }}, {{ r.local_level }}</b> on <b>{{ r.for_date }}</b> <br> <br>
+                                <a href="{% url 'offer_help' r.id %}" class="btn btn-danger">
+                                    Yes, Proceed to Offer Help
+                                </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+         
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>
+<!-- End Main Banner -->
+
+{% endblock %} 

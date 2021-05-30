@@ -9,5 +9,3 @@ class BloodAdmin(ModelAdmin):
 
 admin.site.register(models.Request)
 admin.site.register(models.Blood, BloodAdmin)
-admin.site.register(models.District)
-admin.site.register(models.LocalLevel)

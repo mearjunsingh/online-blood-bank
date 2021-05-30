@@ -1,3 +1,4 @@
+from core.models import Blood
 from django.contrib.auth.forms import (
     AuthenticationForm,
     UserCreationForm,
@@ -83,6 +84,12 @@ class RegisterForm(UserCreationForm):
             'placeholder': 'Gender'
         }
     ), choices=GENDERS)
+    blood_group = forms.ModelChoiceField(queryset = Blood.objects.all(), label='Blood Group', widget=forms.Select(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Blood Group'
+        }
+    ))
     district = forms.CharField(label='District', widget=forms.TextInput(
         attrs={
             'class': 'form-control',
@@ -155,12 +162,18 @@ class UserChangeForm(UserChangeForm):
             'placeholder': 'Gender'
         }
     ), choices=GENDERS)
+    blood_group = forms.ModelChoiceField(queryset = Blood.objects.all(), label='Blood Group', widget=forms.Select(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Blood Group'
+        }
+    ))
     district = forms.CharField(label='District', widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'District',
-            }
-        ))
+        }
+    ))
     local_level = forms.CharField(label='Local Level', widget=forms.TextInput(
     attrs={
         'class': 'form-control',

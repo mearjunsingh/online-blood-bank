@@ -37,29 +37,3 @@ class Blood(models.Model):
 
     def __str__(self):
         return self.group
-
-
-class District(models.Model):
-    name = models.SlugField(max_length=255)
-    slug = models.SlugField(unique=True, editable=False)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.name)
-        super().save(self, *args, **kwargs)
-
-    def __str__(self):
-        return self.name
-
-
-class LocalLevel(models.Model):
-    name = models.SlugField(max_length=255)
-    slug = models.SlugField(unique=True, editable=False)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.name)
-        super().save(self, *args, **kwargs)
-
-    def __str__(self):
-        return self.name

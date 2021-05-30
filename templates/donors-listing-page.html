@@ -8,7 +8,7 @@
           
         <div class="alert alert-danger my-5">
             {% if request.GET.blood and request.GET.district and request.GET.local %}
-                Showing Results: <strong>{{ request.GET.blood }}</strong> in <strong>{{ request.GET.district }}, {{ request.GET.local }}</strong>
+                Showing Results: <strong>{{ blood.group }}</strong> in <strong>{{ request.GET.district }}, {{ request.GET.local }}</strong>
             {% else %}
                 Showing all available donors
             {% endif %}

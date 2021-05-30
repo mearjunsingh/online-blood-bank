@@ -3,8 +3,9 @@
 
     <!-- Main Banner -->
     <div class="container my-5">
-
-      
+      {% if msg %}
+        <div class="alert alert-danger">{{ msg }}</div>
+      {% endif %}
         <div class="row my-2">
             <div class="col-lg-6">
                 <img src="{{ user.display_photo.url }}" class="img-fluid">

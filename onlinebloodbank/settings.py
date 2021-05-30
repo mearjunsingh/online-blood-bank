@@ -129,5 +129,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
 AUTH_USER_MODEL = 'users.CustomUser'
-LOGIN_URL = '/login/'
+LOGIN_URL = '/accounts/login/'
 LOGOUT_REDIRECT_URL ='/'
