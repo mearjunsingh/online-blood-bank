@@ -91,3 +91,12 @@ def verify_request_status(request, id):
         blood_request.status = 'verified'
         blood_request.save()
     return redirect('dashboard_page')
+
+
+@login_required()
+def complete_request_status(request, id):
+    blood_request = get_object_or_404(Request, id=id, status='verified')
+    if blood_request.requested_by == request.user:
+        blood_request.status = 'completed'
+        blood_request.save()
+    return redirect('manage_request_page')

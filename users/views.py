@@ -64,8 +64,9 @@ def dashboard_page(request):
 
 @login_required()
 def manage_request_page(request):
-    requested = Request.objects.filter(requested_by=request.user).order_by('-id')
-    return render(request, 'requests.html', {'requested' : requested})
+    ongoing_requests = Request.objects.filter(requested_by=request.user).exclude(status='completed').order_by('for_date')
+    completed_requests = Request.objects.filter(requested_by=request.user).filter(status='completed').order_by('for_date')
+    return render(request, 'requests.html', {'ongoing_requests' : ongoing_requests, 'completed_requests' : completed_requests})
 
 
 @login_required()

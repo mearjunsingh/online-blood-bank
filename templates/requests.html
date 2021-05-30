@@ -4,10 +4,62 @@
 
 <!-- Main Banner -->
 <div class="container my-5">
-  <div class="row my-2">
 
+  <div class="row my-2">
     <div class="col-12">
-      <h2 class="text-danger">Request History</h2>
+      <h2 class="text-danger">Ongoing Request History</h2>
+      <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Donation Date</th>
+            <th scope="col">Blood Group</th>
+            <th scope="col">Location</th>
+            <th scope="col">Assigned To</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ongoing_request in ongoing_requests %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ ongoing_request.for_date }}</td>
+            <td>{{ ongoing_request.blood_group.group }}</td>
+            <td>{{ ongoing_request.district }}, {{ ongoing_request.local_level }}</td>
+            <td>
+              {% if ongoing_request.donated_by %}
+                  <a class="alert-link" style="text-decoration: none;" href="{% url 'user_page' ongoing_request.donated_by.id %}">{{ ongoing_request.donated_by.first_name }} {{ ongoing_request.donated_by.last_name }}</a>
+              {% else %}
+                Not Yet Assigned
+              {% endif %}
+            </td>
+            <td>
+              {% if ongoing_request.donated_by %}
+                {{ ongoing_request.donated_by.phone_number }}
+              {% else %}
+                Not Yet Assigned
+              {% endif %}
+            </td>
+            <td>
+              {% if ongoing_request.status == 'verified' %}
+                <a href="{% url 'complete_request_status' ongoing_request.id %}" class="btn btn-sm btn-danger">Complete</a>
+              {% else %}
+                  {{ ongoing_request.get_status_display }} 
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    <div class="col-12">
+      <h2 class="text-danger">Completed Request History</h2>
       <div class="table-responsive">
       <table class="table">
         <thead>
@@ -17,45 +69,30 @@
             <th scope="col">Donation Date</th>
             <th scope="col">Blood Group</th>
             <th scope="col">Location</th>
-            <th scope="col">Status</th>
             <th scope="col">Donated By</th>
+            <th scope="col">Contact</th>
           </tr>
         </thead>
         <tbody>
-
-          {% for r in requested %}
+          {% for completed_request in completed_requests %}
           <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ r.requested_date }}</td>
-            <td>{{ r.for_date }}</td>
-            <td>{{ r.get_blood_group_display }}</td>
-            <td>{{ r.district }}, {{ r.local_level }}</td>
-            <td>
-                {% if r.status == "pending" %}
-                <span class="badge bg-danger">
-                    {{ r.get_status_display }}
-                </span>
-                {% elif r.status == "verified" %}
-                <span class="badge bg-warning">
-                    {{ r.get_status_display }}
-                </span>
-                {% elif r.status == "completed"  %}
-                <span class="badge bg-success">
-                    {{ r.get_status_display }}
-                </span>
-                {% endif %}
-            </td>
-            {% if r.donated_by %}
-                <td> <a class="alert-link" style="text-decoration: none;" href="{% url 'user_page' r.donated_by.id %}">{{ r.donated_by.first_name }} {{ r.donated_by.last_name }}</a> </td>
+            <td>{{ completed_request.requested_date }}</td>
+            <td>{{ completed_request.for_date }}</td>
+            <td>{{ completed_request.blood_group.group }}</td>
+            <td>{{ completed_request.district }}, {{ completed_request.local_level }}</td>
+            {% if completed_request.donated_by %}
+                <td> <a class="alert-link" style="text-decoration: none;" href="{% url 'user_page' completed_request.donated_by.id %}">{{ completed_request.donated_by.first_name }} {{ completed_request.donated_by.last_name }}</a> </td>
             {% endif %}
+            <td>
+              {{ completed_request.donated_by.phone_number }}
+            </td>
           </tr>
           {% endfor %}
-         
         </tbody>
       </table>
     </div>
     </div>
-
   </div>
 </div>
 <!-- End Main Banner -->
