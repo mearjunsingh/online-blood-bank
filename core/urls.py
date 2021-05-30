@@ -5,7 +5,8 @@ from .views import (
     pending_requests,
     search_page,
     submit_request,
-    user_page
+    user_page,
+    verify_request_status
 )
 
 urlpatterns = [
@@ -14,5 +15,6 @@ urlpatterns = [
     path('user/<int:id>/', user_page, name='user_page'),
     path('submit-request/', submit_request, name='submit_request'),
     path('pending-requests/', pending_requests, name='pending_requests'),
-    path('offer-help/<int:id>/', offer_help, name='offer_help')
+    path('offer-help/<int:id>/', offer_help, name='offer_help'),
+    path('verify-request-status/<int:id>/', verify_request_status, name='verify_request_status')
 ]
