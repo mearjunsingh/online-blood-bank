@@ -33,7 +33,7 @@ def user_page(request, id):
 def search_page(request):
     if 'blood' in request.GET and 'district' in request.GET and 'local' in request.GET:
         blood = request.GET.get('blood')
-        blood = get_object_or_404(Blood, slug=blood) #Blood.objects.get(slug=blood)
+        blood = get_object_or_404(Blood, slug=blood)
         district = request.GET.get('district')
         local = request.GET.get('local')
         b_url = '?blood=' + blood.slug + '&district=' + district + '&local=' + local + '&'
@@ -71,13 +71,13 @@ def submit_request(request):
 
 
 def pending_requests(request):
-    blood_requests = Request.objects.filter(donated_by=None).order_by('for_date')
+    blood_requests = Request.objects.filter(donated_by=None).filter(status='pending').order_by('for_date')
     return render(request, 'pending-requests.html', {'blood_requests' : blood_requests})
 
 
 @login_required()
 def offer_help(request, id):
-    blood_request = get_object_or_404(Request, id=id, status='pending')
+    blood_request = get_object_or_404(Request, id=id, status='pending', donated_by=None)
     if blood_request.requested_by != request.user:
         blood_request.donated_by = request.user
         blood_request.status = 'verified'
@@ -86,7 +86,7 @@ def offer_help(request, id):
 
 @login_required()
 def verify_request_status(request, id):
-    blood_request = get_object_or_404(Request, id=id, status='pending')
+    blood_request = get_object_or_404(Request, id=id, donated_by=request.user, status='pending')
     if blood_request.requested_by != request.user:
         blood_request.status = 'verified'
         blood_request.save()
@@ -95,8 +95,8 @@ def verify_request_status(request, id):
 
 @login_required()
 def complete_request_status(request, id):
-    blood_request = get_object_or_404(Request, id=id, status='verified')
-    if blood_request.requested_by == request.user:
+    blood_request = get_object_or_404(Request, id=id, requested_by=request.user, status='verified')
+    if blood_request.donated_by != request.user:
         blood_request.status = 'completed'
         blood_request.save()
     return redirect('manage_request_page')
