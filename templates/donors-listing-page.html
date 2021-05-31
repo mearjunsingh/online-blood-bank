@@ -23,7 +23,7 @@
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
                         <p class="card-text">
-                            Blood Group: <strong>{{ user.get_blood_group_display }}</strong> <br>
+                            Blood Group: <strong>{{ user.blood_group.group }}</strong> <br>
                             District: <strong>{{ user.district }}</strong> <br>
                             Local Level: <strong>{{ user.local_level }}</strong>
                         </p>
@@ -42,5 +42,8 @@
     </div>
     <!-- End Main Banner -->
 
+    {% include 'includes/pagination.html' with posts=users %}
+
+    <hr>
 
     {% endblock %}

@@ -1,0 +1,65 @@
+{% if posts.paginator.num_pages > 1 %}
+<hr class="invis">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+
+                    {% if posts.number != 1 %}
+                        <li class="page-item">
+                            <a href="{{ base_url }}page=1" class="page-link">First</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">First</a>
+                        </li>
+                    {% endif %}
+
+                    {% if posts.has_previous %}
+                        <li class="page-item">
+                            <a href="{{ base_url }}page={{ posts.previous_page_number }}" class="page-link">&laquo; Previous</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in posts.paginator.page_range %}
+                        {% if posts.number == i %}
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link">{{ i }}</a>
+                            </li>
+                        {% elif posts.number > i|add:"-3" and posts.number < i|add:"+3"%}
+                            <li class="page-item">
+                                <a href="{{ base_url }}page={{ i }}" class="page-link">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+
+                    {% if posts.has_next %}
+                        <li class="page-item">
+                            <a href="{{ base_url }}page={{ posts.next_page_number }}" class="page-link">Next &raquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&raquo;</a>
+                        </li>
+                    {% endif %}
+            
+                    {% if posts.paginator.num_pages != posts.number %}
+                        <li class="page-item">
+                            <a href="{{ base_url }}page={{ posts.paginator.num_pages }}" class="page-link">Last</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Last</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </div><!-- end col -->
+    </div><!-- end row -->
+{% endif %}

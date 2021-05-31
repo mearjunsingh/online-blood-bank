@@ -71,7 +71,7 @@ def submit_request(request):
 
 
 def pending_requests(request):
-    blood_requests = Request.objects.filter(status='pending').order_by('for_date')
+    blood_requests = Request.objects.filter(donated_by=None).order_by('for_date')
     return render(request, 'pending-requests.html', {'blood_requests' : blood_requests})
 
 

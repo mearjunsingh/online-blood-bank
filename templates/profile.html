@@ -13,7 +13,7 @@
             <div class="col-lg-6">
                 <h2 class="display-3 fw-bold">{{ user.first_name }} {{ user.last_name }}</h2>
                 <p class="display-6">
-                    Blood Group: <strong>{{ user.get_blood_group_display }}</strong> <br>
+                    Blood Group: <strong>{{ user.blood_group.group }}</strong> <br>
                     Address: <strong>{{ user.district }}, {{ user.local_level }}</strong> <br>
                     Gender: <strong>{{ user.get_gender_display }}</strong> <br>
                     Age: <strong>{{ user.age }}</strong>
@@ -39,7 +39,7 @@
                           
                             {% include 'includes/general-form.html' %}
 
-                            <button class="w-100 mt-3 btn btn-danger btn-lg" type="submit">RequeSt DONOR</button>
+                            <button class="w-100 mt-3 btn btn-danger btn-lg" type="submit">Request Donor</button>
                 
                         </form>
                         
@@ -57,70 +57,19 @@
 
         <hr class="my-5">
 
-        <div class="row my-2">
-            <div class="col-lg-6">
-                <h2 class="text-danger">Donation History</h2>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Location</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <div class="col-lg-6">
-                <h2 class="text-danger">Request History</h2>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Blood Group</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
       </div>
       <!-- End Main Banner -->
   
   
+      {% endblock %}
+
+      {% block scripts %}
+
+      {% if form.errors %}
+      <script>
+        var myModal = new bootstrap.Modal(document.getElementById('updateProfieModal'), { keyboard: false });
+        myModal.show();
+      </script>
+      {% endif %}
+      
       {% endblock %}
