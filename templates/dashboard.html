@@ -25,10 +25,13 @@
     <div class="col-lg-6">
       <img src="{{ request.user.display_photo.url }}" class="img-fluid" />
       <hr />
-      <form class="row g-3">
-        <div class="col-auto">
-          <input class="form-control" type="file" id="formFile" />
-        </div>
+      <form class="row g-3" action="{% url 'upload_image' %}" enctype="multipart/form-data" method="POST" novalidate>
+        {% csrf_token %}
+          {% for form_field in photo_form %}
+            <div class="col-auto">
+              {{ form_field }}
+            </div>
+          {% endfor %}
         <div class="col-auto">
           <button type="submit" class="btn btn-danger mb-3">Upload</button>
         </div>
@@ -325,7 +328,7 @@
       headers: {
         "X-CSRFToken": "{{ csrf_token }}",
       },
-      url: "/ajax/change_is_donor/",
+      url: "{% url 'change_is_donor_page' %}",
       method: "POST",
       error: function () {
         alert("Cannot Make Connection!");

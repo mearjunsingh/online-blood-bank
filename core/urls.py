@@ -18,5 +18,5 @@ urlpatterns = [
     path('pending-requests/', pending_requests, name='pending_requests'),
     path('offer-help/<int:id>/', offer_help, name='offer_help'),
     path('verify-request-status/<int:id>/', verify_request_status, name='verify_request_status'),
-    path('complete-request-status/<int:id>', complete_request_status, name='complete_request_status')
+    path('complete-request-status/<int:id>/', complete_request_status, name='complete_request_status')
 ]

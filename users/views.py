@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from .forms import LoginForm, RegisterForm, ChangePasswordForm, UserChangeForm
+from .forms import LoginForm, RegisterForm, ChangePasswordForm, UserChangeForm, PhotoForm
 from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from core.models import Request
@@ -51,10 +51,12 @@ def dashboard_page(request):
     pendings = Request.objects.filter(donated_by=request.user).exclude(status='completed').order_by('for_date')
     instance = get_object_or_404(User, email=request.user.email)
     form = UserChangeForm(request.POST or None, instance=instance)
+    photo_form = PhotoForm()
     if form.is_valid():
         form.save()
         return redirect('dashboard_page')
     context = {
+        'photo_form' : photo_form,
         'form' : form,
         'donated' : donated,
         'pendings' : pendings
@@ -77,3 +79,11 @@ def changePassword_page(request):
         update_session_auth_hash(request, form.user)
         return redirect('dashboard_page')
     return render(request, 'change-password.html', {'form' : form})
+
+
+def upload_image(request):
+    instance = get_object_or_404(User, email=request.user.email)
+    image = PhotoForm(data=request.POST, files=request.FILES, instance=instance)
+    if image.is_valid():
+        image.save()
+    return redirect('dashboard_page')

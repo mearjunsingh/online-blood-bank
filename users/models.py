@@ -38,7 +38,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('Email Address'), unique=True)
     first_name = models.CharField(_('First Name'), max_length=254)
     last_name = models.CharField(_('Last Name'), max_length=254)
-    display_photo = models.ImageField(_('Display Photo'), upload_to=utils.user_profile_image_file, default='default.png')
+    display_photo = models.ImageField(_('Display Photo'), upload_to=utils.user_profile_image_file)
     date_of_birth = models.DateField(_('Date Of Birth'))
     gender = models.CharField(_('Gender'), max_length=1, choices=GENDERS)
     blood_group = models.ForeignKey(Blood, on_delete=models.RESTRICT)
@@ -58,12 +58,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     @property
     def age(self):
         return int((datetime.date.today() - self.date_of_birth).days / 365.25)
-    
-    def save(self, *args, **kwargs):
-        if not self.id:
-            new_image = utils.compress_image_on_upload(self.display_photo)
-            self.display_photo = new_image
-        super().save(*args, **kwargs)
     
     def __str__(self):
          return self.email
