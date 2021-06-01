@@ -1,5 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
+
+
+{% block meta %}
+
+<title>Online Blood Bank - Connecting Blood Reciever and Donors</title>
+<meta name="keywords" content="blood, online blood, blood bank, nepal, health, medicines, emergency, hospitals" />
+<meta name="description" content="This app connects blood donors and recievers. Search blood donors or offer help to someone as donor, all in one place." />
+<meta name="author" content="https://arjunsingh.com.np/" />
+
+<meta property="og:title" content="Online Blood Bank - Connecting Blood Reciever and Donors" />
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:description" content="This app connects blood donors and recievers. Search blood donors or offer help to someone as donor, all in one place." />
+<meta property="og:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="og:type" content="website" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Online Blood Bank - Connecting Blood Reciever and Donors" />
+<meta property="twitter:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="twitter:url" content="{{ request.build_absolute_uri }}" />
+<meta name="twitter:image:alt" content="Onlne Blood Bank" />
+
+{% endblock %}
+
+
+{% block styles %}
+{% endblock %}
+
+
 {% block main %}
 
   <!-- Main Banner -->
@@ -14,25 +42,50 @@
   <section>
     <div class="container my-5">
 
-      <div class="mb-5 card text-center">
-        <div class="card-body">
-          <h1 class="card-title mt-2 text-danger fw-bold display-3">About Us</h1>
-          <p class="card-text p-3">
-            <img src="{% static 'images/lead_blood.png' %}" class="img-fluid rounded">
-          </p>
-          <p class="card-text px-5 lead" style="text-align: justify;">A single donation can save three lives. One blood donation provides different blood components that can help up to three different people. We are a service motive for the welfare of the society. We work to encourage and inspire people to donate blood and provide fresh blood to needy one in need to save life.</p>
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+
+          <div class="mb-5 card text-center">
+            <div class="card-body">
+              <h1 class="card-title mt-2 text-danger fw-bold display-6">About Us</h1>
+              <p class="card-text p-3">
+                <img src="{% static 'images/lead_blood.png' %}" class="img-fluid rounded" style="width: 90%; height: auto;">
+              </p>
+              <p class="card-text px-5 lead" style="text-align: justify;">A single donation can save three lives. One blood donation provides different blood components that can help up to three different people. We are a service motive for the welfare of the society. We work to encourage and inspire people to donate blood and provide fresh blood to needy one in need to save life.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-6 col-md-12">
+
+          <div class="mb-5 card text-center">
+            <div class="card-body">
+              <h1 class="card-title mt-2 text-danger fw-bold display-6">Our Mission and Goals</h1>
+              <p class="card-text p-3">
+                <img src="{% static 'images/lead_blood.png' %}" class="img-fluid rounded" style="width: 90%; height: auto;">
+              </p>
+              <p class="card-text px-5 lead" style="text-align: justify;">A single donation can save three lives. One blood donation provides different blood components that can help up to three different people. We are a service motive for the welfare of the society. We work to encourage and inspire people to donate blood and provide fresh blood to needy one in need to save life.</p>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div class="mt-5 card text-center">
+      <div class="mb-5 card text-center">
         <div class="card-body">
-          <h5 class="card-title">Contact Us</h5>
-          <p class="card-text">Have any questions or suggestions?</p>
-          <a href="#" class="btn btn-primary">Click Here</a>
+          <h1 class="card-title mt-2 text-danger fw-bold display-5">Contribute and Donate</h1>
+          <p class="card-text p-3">
+            <img src="{% static 'images/lead_blood.png' %}" class="img-fluid rounded" style="width: 500px; height: auto;">
+          </p>
+          <p class="card-text px-5 lead" style="text-align: justify;">A single donation can save three lives. One blood donation provides different blood components that can help up to three different people. We are a service motive for the welfare of the society. We work to encourage and inspire people to donate blood and provide fresh blood to needy one in need to save life.</p>
         </div>
       </div>
 
     </div>
   </section>
 
+{% endblock %}
+
+
+{% block scripts %}
 {% endblock %}

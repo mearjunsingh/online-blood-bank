@@ -1,6 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block meta %}
+
+<title>Submit New Blood Request - Online Blood Bank</title>
+<meta name="keywords" content="blood, online blood, blood bank, nepal, health, medicines, emergency, hospitals" />
+<meta name="description" content="Wait for someone to offer help after submitting a blood request." />
+<meta name="author" content="https://arjunsingh.com.np/" />
+
+<meta property="og:title" content="Submit New Blood Request - Online Blood Bank" />
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:description" content="Wait for someone to offer help after submitting a blood request." />
+<meta property="og:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="og:type" content="website" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Submit New Blood Request - Online Blood Bank" />
+<meta property="twitter:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="twitter:url" content="{{ request.build_absolute_uri }}" />
+<meta name="twitter:image:alt" content="Onlne Blood Bank" />
+
+{% endblock %}
+
+
+{% block styles %}
+{% endblock %}
+
+
 {% block main %}
 
 <div class="body-form vh-100">
@@ -23,6 +50,11 @@
 
 <datalist id="districts"></datalist>
 <datalist id="locals"></datalist>
+
+{% endblock %}
+
+
+{% block scripts %}
 
 <script>
   $(document).ready(function() {
