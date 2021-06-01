@@ -146,6 +146,9 @@
                     {% if form.district.help_text %}
                         <div class="text-secondary">{{ form.district.help_text|safe }}</div>
                     {% endif %}
+
+                    <datalist id="districts"></datalist>
+
                 </div>
 
                 <div class="col-sm-6">
@@ -162,6 +165,9 @@
                     {% if form.local_level.help_text %}
                         <div class="text-secondary">{{ form.local_level.help_text|safe }}</div>
                     {% endif %}
+
+                    <datalist id="locals"></datalist>
+
                 </div>
 
                 <div class="col-sm-6">
@@ -212,5 +218,33 @@
         </form>
     </main>
 </div>
+
+
+<script>
+$(document).ready(function() {
+
+    var district = $('#districts');
+    $.getJSON("{% static 'js/places.json' %}", function (result) {
+      for(x in result) {
+        district.append($("<option></option>").attr("value", x));
+      }
+    });
+
+    $('#id_district').on('change', function () {
+      var state = $(this).val(), city = $('#locals');
+      $.getJSON("{% static 'js/places.json' %}", function (result) {
+        var values = result[state];
+        city.find('option').remove();
+        if (values != undefined && values.length > 0) {
+          $(values).each(function(index, element) {
+            city.append($("<option></option>").attr("value", element));
+          });
+        }
+      });
+    });
+
+  });
+</script>
+
 
 {% endblock %}

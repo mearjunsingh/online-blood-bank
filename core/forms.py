@@ -15,8 +15,8 @@ class RequestForm(forms.ModelForm):
         widgets = {
             'blood_group': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Blood Group'}),
             'for_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'type': 'date'}),
-            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
-            'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
+            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list': 'districts'}),
+            'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list': 'locals'}),
         }
 
 

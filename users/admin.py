@@ -44,8 +44,9 @@ class CustomUserAdmin(UserAdmin):
         }),
         ('Details', {
             'fields': (
-                'is_staff',
                 'is_active',
+                'is_staff',
+                'is_superuser',
                 'date_joined',
                 'last_login'
                 )

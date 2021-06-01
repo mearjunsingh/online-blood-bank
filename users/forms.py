@@ -95,12 +95,14 @@ class RegisterForm(UserCreationForm):
         attrs={
             'class': 'form-control',
             'placeholder': 'District',
+            'list': 'districts'
             }
         ))
     local_level = forms.CharField(label='Local Level', widget=forms.TextInput(
     attrs={
         'class': 'form-control',
         'placeholder': 'Local Level',
+        'list': 'locals'
         }
     ))
     password1 = forms.CharField(label='Choose Password', widget=forms.PasswordInput(
@@ -173,12 +175,14 @@ class UserChangeForm(UserChangeForm):
         attrs={
             'class': 'form-control',
             'placeholder': 'District',
+            'list': 'districts'
         }
     ))
     local_level = forms.CharField(label='Local Level', widget=forms.TextInput(
     attrs={
         'class': 'form-control',
         'placeholder': 'Local Level',
+        'list': 'locals'
         }
     ))
 
