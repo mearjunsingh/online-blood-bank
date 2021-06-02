@@ -11,6 +11,7 @@ class Request(models.Model):
         ('pending', 'Pending'),
         ('verified', 'Verified'),
         ('completed', 'Completed'),
+        ('canceled', 'Canceled'),
     )
     
     requested_by = models.ForeignKey(User, on_delete = models.RESTRICT, related_name='requested_by')

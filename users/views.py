@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib.auth import get_user_model
@@ -66,8 +67,14 @@ def dashboard_page(request):
 
 @login_required()
 def manage_request_page(request):
-    ongoing_requests = Request.objects.filter(requested_by=request.user).exclude(status='completed').order_by('for_date')
-    completed_requests = Request.objects.filter(requested_by=request.user).filter(status='completed').order_by('for_date')
+    ongoing_requests = Request.objects.filter(requested_by=request.user).exclude(
+        Q(status = 'completed') | 
+        Q(status = 'canceled')
+    ).order_by('for_date')
+    completed_requests = Request.objects.filter(requested_by=request.user).filter(
+        Q(status = 'completed') | 
+        Q(status = 'canceled')
+    ).order_by('for_date')
     return render(request, 'requests.html', {'ongoing_requests' : ongoing_requests, 'completed_requests' : completed_requests})
 
 

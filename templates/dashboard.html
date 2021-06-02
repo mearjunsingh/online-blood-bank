@@ -285,9 +285,10 @@
             </td>
             <td>
               {% if pending.status == 'pending' %}
-              <a href="{% url 'verify_request_status' pending.id %}" class="btn btn-sm btn-danger">Verify</a>
+                <a href="{% url 'verify_request_status' pending.id %}" class="btn btn-sm btn-danger">Verify</a>
+                <a href="{% url 'deny_request_status' pending.id %}" class="btn btn-sm btn-primary">Deny</a>
               {% else %}
-                  {{ pending.get_status_display }} 
+                {{ pending.get_status_display }} 
               {% endif %}
             </td>
           </tr>
