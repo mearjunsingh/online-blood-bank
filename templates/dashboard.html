@@ -1,5 +1,18 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
+
+
+{% block meta %}
+
+<title>Dashboard - Online Blood Bank</title>
+<meta name="robots" content="noindex, nofollow">
+
+{% endblock %}
+
+
+{% block styles %}
+{% endblock %}
+
 
 {% block main %}
 
@@ -322,6 +335,11 @@
 <datalist id="districts"></datalist>
 <datalist id="locals"></datalist>
 
+{% endblock %} 
+
+
+{% block scripts %}
+
 <script>
   $(document).ready(function() {
 
@@ -345,27 +363,19 @@
       });
     });
 
-  });
-</script>
-
-
-{% endblock %} 
-
-{% block scripts %}
-
-<script>
-
-  $("#profilestatus").change(function () {
-    $.ajax({
-      headers: {
-        "X-CSRFToken": "{{ csrf_token }}",
-      },
-      url: "{% url 'change_is_donor_page' %}",
-      method: "POST",
-      error: function () {
-        alert("Cannot Make Connection!");
-      }
+    $("#profilestatus").change(function () {
+      $.ajax({
+        headers: {
+          "X-CSRFToken": "{{ csrf_token }}",
+        },
+        url: "{% url 'change_is_donor_page' %}",
+        method: "POST",
+        error: function () {
+          alert("Cannot Make Connection!");
+        }
+      });
     });
+
   });
 </script>
 

@@ -1,8 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+{% block meta %}
+
+{% if blood %}
+    <title>Searching donors for {{ blood.group }} in {{ request.GET.district }}, {{ request.GET.local }} - Online Blood Bank</title>
+{% else %}
+    <title>Browsing all donors - Online Blood Bank</title>
+{% endif%}
+<meta name="keywords" content="blood, online blood, blood bank, nepal, health, medicines, emergency, hospitals" />
+<meta name="description" content="Browse the list here and find someone whom you can request to donate blood." />
+<meta name="author" content="https://arjunsingh.com.np/" />
+
+{% if blood %}
+    <meta property="og:title" content="Searching donors for {{ blood.group }} in {{ request.GET.district }}, {{ request.GET.local }} - Online Blood Bank" />
+{% else %}
+    <meta property="og:title" content="Browsing all donors - Online Blood Bank" />
+{% endif%}
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:description" content="Browse the list here and find someone whom you can request to donate blood." />
+<meta property="og:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="og:type" content="website" />
+
+<meta property="twitter:card" content="summary_large_image" />
+{% if blood %}
+    <meta property="twitter:title" content="Searching donors for {{ blood.group }} in {{ request.GET.district }}, {{ request.GET.local }} - Online Blood Bank" />
+{% else %}
+    <meta property="twitter:title" content="Browsing all donors - Online Blood Bank" />
+{% endif%}
+<meta property="twitter:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="twitter:url" content="{{ request.build_absolute_uri }}" />
+<meta name="twitter:image:alt" content="Onlne Blood Bank" />
+
+{% endblock %}
+
+
+{% block styles %}
+{% endblock %}
+
+
 {% block main %}
 
     <!-- Main Banner -->
-    <div class="container my-5 vh-100">
+    <div class="container my-5">
         
         {% include 'includes/search-form.html' with mt=3 mb=3 %}
           
@@ -44,6 +85,8 @@
 
     {% include 'includes/pagination.html' with posts=users %}
 
-    <hr>
+{% endblock %}
 
-    {% endblock %}
+
+{% block scripts %}
+{% endblock %}

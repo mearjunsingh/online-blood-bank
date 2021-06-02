@@ -31,6 +31,6 @@ class RequestUser(forms.ModelForm):
         fields = ['for_date', 'district', 'local_level']
         widgets = {
             'for_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'type': 'date'}),
-            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
-            'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level'}),
+            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list' : 'districts'}),
+            'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list': 'locals'}),
         }
