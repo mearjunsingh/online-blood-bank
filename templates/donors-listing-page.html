@@ -20,7 +20,7 @@
 {% endif%}
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 <meta property="og:description" content="Browse the list here and find someone whom you can request to donate blood." />
-<meta property="og:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="og:image" content="{% static 'images/online-blood-bank.png' %}" />
 <meta property="og:type" content="website" />
 
 <meta property="twitter:card" content="summary_large_image" />
@@ -29,7 +29,7 @@
 {% else %}
     <meta property="twitter:title" content="Browsing all donors - Online Blood Bank" />
 {% endif%}
-<meta property="twitter:image" content="{{ request.get_host }}{% static 'images/online-blood-bank.png' %}" />
+<meta property="twitter:image" content="{% static 'images/online-blood-bank.png' %}" />
 <meta property="twitter:url" content="{{ request.build_absolute_uri }}" />
 <meta name="twitter:image:alt" content="Onlne Blood Bank" />
 

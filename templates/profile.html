@@ -12,12 +12,12 @@
 <meta property="og:title" content="{{ user.first_name }} {{ user.last_name }} - Online Blood Bank" />
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 <meta property="og:description" content="See brief details about {{ user.first_name }} {{ user.last_name }} and request for help." />
-<meta property="og:image" content="{{ request.get_host }}{{ user.display_photo.url }}" />
+<meta property="og:image" content="{{ user.display_photo.url }}" />
 <meta property="og:type" content="website" />
 
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="{{ user.first_name }} {{ user.last_name }} - Online Blood Bank" />
-<meta property="twitter:image" content="{{ request.get_host }}{{ user.display_photo.url }}" />
+<meta property="twitter:image" content="{{ user.display_photo.url }}" />
 <meta property="twitter:url" content="{{ request.build_absolute_uri }}" />
 <meta name="twitter:image:alt" content="Onlne Blood Bank" />
 
