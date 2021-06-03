@@ -44,7 +44,7 @@
     "Surnaya"
   ],
   "Bajhang": [
-    "Bitthadachir Minicipality",
+    "Bitthadachir",
     "Bungal",
     "Chabbish Pathivara",
     "Durgathali",
@@ -75,7 +75,7 @@
     "Khajura",
     "Kohalpur",
     "Narainapur",
-    "Nepalgunj Sub Metropolitan City",
+    "Nepalgunj",
     "Rapti Sonari"
   ],
   "Bara": [
@@ -84,8 +84,8 @@
     "Bishrampur",
     "Devtal",
     "Fota",
-    "Jitpur-Simara Sub-Metropolitan City",
-    "Kalaiya Sub-Metropolitan City",
+    "Jitpur-Simara",
+    "Kalaiya",
     "Karaiyamai",
     "Kolhawi",
     "Mahagadimai",
@@ -124,7 +124,7 @@
     "Tyamke-Maiyunm"
   ],
   "Chitwan": [
-    "Bharatpur Metropolitan City",
+    "Bharatpur",
     "Ichchhakamana",
     "Kalika",
     "Khairahani",
@@ -159,12 +159,12 @@
     "Bangala CHuli",
     "Dangisharan",
     "Gadwa",
-    "Ghorahi Sub Metropolitan City",
-    "Lamahi Metropolitan City",
+    "Ghorahi",
+    "Lamahi",
     "Rajpur",
     "Rapti",
     "Shantinagar",
-    "Tulsipur Sub Metropolitan City"
+    "Tulsipur"
   ],
   "Darchula": [
     "Api Himal",
@@ -211,7 +211,7 @@
     "Ganeshman-Charnath",
     "Hanshapur",
     "Janak Nandini",
-    "Janakpur Sub-Metropolitan City",
+    "Janakpur",
     "Kamala",
     "Lashminiya",
     "Mithila Birahi",
@@ -253,7 +253,7 @@
     "Sayal",
     "Shikhar"
   ],
-  "EasternRukum": ["Bhume", "Putha Uttarganga", "Sisne"],
+  "Eastern Rukum": ["Bhume", "Putha Uttarganga", "Sisne"],
   "Gorkha": [
     "Aarughat",
     "Ajirkot",
@@ -342,7 +342,7 @@
     "Bargagoriya",
     "Bhajani",
     "Chure",
-    "Dhangadi Sub Metropolitan City",
+    "Dhangadi",
     "Gauriganga",
     "Ghodaghodi",
     "Godavari",
@@ -387,20 +387,14 @@
     "Suddhodhan",
     "Yashodhara"
   ],
-  "Kaski": [
-    "Annapurna",
-    "Macchapucchre",
-    "Madi",
-    "Pokhara Lekhnath Metropolitan City",
-    "Rupa"
-  ],
+  "Kaski": ["Annapurna", "Macchapucchre", "Madi", "Pokhara Lekhnath", "Rupa"],
   "Kathmandu": [
     "Budhanilkantha",
     "Chandragiri",
     "Dakshinkali",
     "Gokarneshwor",
     "Kageshwori-Manohara",
-    "Kathmandu Metropolitan City",
+    "Kathmandu",
     "Kirtipur",
     "Nagarjun",
     "Shankhapur",
@@ -438,7 +432,7 @@
     "Bagmati",
     "Godavari",
     "Konjayoshom",
-    "Lalitpur Metropolitan City",
+    "Lalitpur",
     "Mahalakshmi",
     "Mahankal"
   ],
@@ -474,7 +468,7 @@
     "Bailash",
     "Bakaiya",
     "Bhimfedi",
-    "Hetauda Sub-Metropolitan City",
+    "Hetauda",
     "Inadra Sarowar",
     "Makwanpur Gadhi",
     "Manhari",
@@ -484,7 +478,7 @@
   "Manang": ["Chame", "Narfu", "Nasong", "Neshyang"],
   "Morang": [
     "Belwari",
-    "Biratnagar Metropolitan City",
+    "Biratnagar",
     "Budiganga",
     "Dhanpalthan",
     "Gramthan",
@@ -594,7 +588,7 @@
   "Parsa": [
     "Bahudarmai",
     "Bindabashini",
-    "Birgunj Sub-Metropolitan City",
+    "Birgunj",
     "Chipaharmai",
     "Dhobini",
     "Jagarnathpur",
@@ -643,7 +637,7 @@
     "Ishnath",
     "Katahariya",
     "Madhav Narayan",
-    "Maulapur Minicipality",
+    "Maulapur",
     "Paroha",
     "Rajdevi",
     "Rajpur",
@@ -662,12 +656,12 @@
     "Triveni"
   ],
   "Rupandehi": [
-    "Butwal Sub-Metropolitan City",
+    "Butwal",
     "Devdaha",
     "Gaidahawa",
     "Kanchan",
     "Kothiai",
-    "Lumbini Sanskritik Municiplaity",
+    "Lumbini Sanskritik",
     "Marchawari",
     "Mayadevi",
     "Omsatiya",
@@ -724,7 +718,7 @@
     "Tirhut"
   ],
   "Sarlahi": [
-    "Bagmati Municipalty",
+    "Bagmati",
     "Balara",
     "Barahathawa",
     "Basbariya",
@@ -746,7 +740,7 @@
     "Ramnagar"
   ],
   "Sindhuli": [
-    "Dudhauli Minicipality",
+    "Dudhauli",
     "Fikkal",
     "Ghyanglekh",
     "Golanjor",
@@ -804,12 +798,12 @@
     "Barju",
     "Bhokraha",
     "Devgunj",
-    "Dharan Sub-Metropolitan City",
+    "Dharan",
     "Duhawi",
     "Gadhi",
     "Harinagara",
     "Inaruwa",
-    "Itahari Sub-Metropolitan City",
+    "Itahari",
     "Koshi",
     "Ramdhuni"
   ],
