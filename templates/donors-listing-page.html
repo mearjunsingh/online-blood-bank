@@ -60,7 +60,11 @@
             {% for user in users %}
             <div class="col">
                 <div class="card h-100">
-                    <img src="{{ user.display_photo.url }}" class="card-img-top">
+                    {% if user.display_photo %}
+                        <img src="{{ user.display_photo.url }}" class="card-img-top">
+                    {% else %}
+                        <img src="{% static 'images/default.png' %}" class="img-fluid" />
+                    {% endif %}
                     <div class="card-body ">
                         <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
                         <p class="card-text">

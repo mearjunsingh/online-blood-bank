@@ -12,12 +12,12 @@
 <meta property="og:title" content="{{ user.first_name }} {{ user.last_name }} - Online Blood Bank" />
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 <meta property="og:description" content="See brief details about {{ user.first_name }} {{ user.last_name }} and request for help." />
-<meta property="og:image" content="{{ user.display_photo.url }}" />
+<meta property="og:image" content="{% if user.display_photo %}{{ user.display_photo.url }}{% else %}{% static 'images/default.png' %}{% endif %}" />
 <meta property="og:type" content="website" />
 
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="{{ user.first_name }} {{ user.last_name }} - Online Blood Bank" />
-<meta property="twitter:image" content="{{ user.display_photo.url }}" />
+<meta property="twitter:image" content="{% if user.display_photo %}{{ user.display_photo.url }}{% else %}{% static 'images/default.png' %}{% endif %}" />
 <meta property="twitter:url" content="{{ request.build_absolute_uri }}" />
 <meta name="twitter:image:alt" content="Onlne Blood Bank" />
 
@@ -37,7 +37,11 @@
       {% endif %}
         <div class="row my-2">
             <div class="col-lg-6">
-                <img src="{{ user.display_photo.url }}" class="img-fluid">
+              {% if user.display_photo %}
+                <img src="{{ user.display_photo.url }}" class="img-fluid p-3" />
+              {% else %}
+                <img src="{% static 'images/default.png' %}" class="img-fluid" style="width: 70%;" />
+              {% endif %}
             </div>
             <div class="col-lg-6">
                 <h2 class="display-3 fw-bold">{{ user.first_name }} {{ user.last_name }}</h2>
