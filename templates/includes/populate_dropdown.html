@@ -1,0 +1,65 @@
+{% load static %}
+
+<script>
+  $(document).ready(function () {
+
+    var district = $("#id_district");
+    $.getJSON("{% static 'js/places.json' %}", function (result) {
+      district.find("option").remove();
+      district.append($("<option></option>").attr("value", "").text("-- District --"));
+
+      {% if user_change.district %}
+        var user_district = "{{ user_change.district }}";
+      {% else %}
+        var user_district = null;
+      {% endif %}
+
+      for (x in result) {
+        if (user_district == x) {
+          district.append($("<option selected></option>").attr("value", x).text(x));
+        } else {
+          district.append($("<option></option>").attr("value", x).text(x));
+        }
+      }
+    });
+
+    function populate_dis() {
+      
+      {% if user_change.district %}
+        var state = "{{ user_change.district }}";
+      {% else %}
+        var state = $("#id_district").val();
+      {% endif %}
+
+      var city = $("#id_local_level");
+      $.getJSON("{% static 'js/places.json' %}", function (result) {
+        var values = result[state];
+        city.find("option").remove();
+        city.append($("<option></option>").attr("value", "").text("-- Local Level --"));
+        if (values != undefined && values.length > 0) {
+          $(values).each(function (index, element) {
+
+            {% if user_change.local_level %}
+              var user_local = "{{ user_change.local_level }}";
+            {% else %}
+              var user_local = null;
+            {% endif %}
+
+            if (user_local == element) {
+              city.append($("<option selected></option>").attr("value", element).text(element));
+            } else {
+              city.append($("<option></option>").attr("value", element).text(element));
+            }
+          });
+        }
+      });
+    }
+    
+    populate_dis();
+
+    $("#id_district").on("change", function () {
+      populate_dis();
+    });
+    
+  });
+</script>

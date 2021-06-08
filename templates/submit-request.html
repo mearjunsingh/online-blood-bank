@@ -37,7 +37,7 @@
       <div class="alert alert-danger">{{ msg }}</div>
     {% endif %}
 
-    <form novalidate action="{% url 'submit_request' %}" method="POST">
+    <form action="{% url 'submit_request' %}" method="POST">
 
       {% include 'includes/general-form.html' %}
 
@@ -48,38 +48,11 @@
   </main>
 </div>
 
-<datalist id="districts"></datalist>
-<datalist id="locals"></datalist>
-
 {% endblock %}
 
 
 {% block scripts %}
 
-<script>
-  $(document).ready(function() {
-
-    var district = $('#districts');
-    $.getJSON("{% static 'js/places.json' %}", function (result) {
-      for(x in result) {
-        district.append($("<option></option>").attr("value", x));
-      }
-    });
-
-    $('#id_district').on('change', function () {
-      var state = $(this).val(), city = $('#locals');
-      $.getJSON("{% static 'js/places.json' %}", function (result) {
-        var values = result[state];
-        city.find('option').remove();
-        if (values != undefined && values.length > 0) {
-          $(values).each(function(index, element) {
-            city.append($("<option></option>").attr("value", element));
-          });
-        }
-      });
-    });
-
-  });
-</script>
+{% include 'includes/populate_dropdown.html' %}
 
 {% endblock %}

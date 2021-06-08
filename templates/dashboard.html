@@ -44,7 +44,7 @@
         <img src="{% static 'images/default.png' %}" class="img-fluid" style="width: 70%;" />
       {% endif %}
       <hr />
-      <form class="row g-3" action="{% url 'upload_image' %}" enctype="multipart/form-data" method="POST" novalidate>
+      <form class="row g-3" action="{% url 'upload_image' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
           {% for form_field in photo_form %}
             <div class="col-auto">
@@ -82,7 +82,7 @@
             </div>
             <div class="modal-body">
               
-              <form novalidate action="{% url 'dashboard_page' %}" method="POST">
+              <form action="{% url 'dashboard_page' %}" method="POST">
                 {% csrf_token %}
     
                 {% if form.non_field_errors %}
@@ -337,51 +337,25 @@
 </div>
 <!-- End Main Banner -->
 
-
-<datalist id="districts"></datalist>
-<datalist id="locals"></datalist>
-
 {% endblock %} 
 
 
 {% block scripts %}
 
-<script>
-  $(document).ready(function() {
+{% include 'includes/populate_dropdown.html' with user_change=request.user %}
 
-    var district = $('#districts');
-    $.getJSON("{% static 'js/places.json' %}", function (result) {
-      for(x in result) {
-        district.append($("<option></option>").attr("value", x));
+<script>
+  $("#profilestatus").change(function () {
+    $.ajax({
+      headers: {
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+      url: "{% url 'change_is_donor_page' %}",
+      method: "POST",
+      error: function () {
+        alert("Cannot Make Connection!");
       }
     });
-
-    $('#id_district').on('change', function () {
-      var state = $(this).val(), city = $('#locals');
-      $.getJSON("{% static 'js/places.json' %}", function (result) {
-        var values = result[state];
-        city.find('option').remove();
-        if (values != undefined && values.length > 0) {
-          $(values).each(function(index, element) {
-            city.append($("<option></option>").attr("value", element));
-          });
-        }
-      });
-    });
-
-    $("#profilestatus").change(function () {
-      $.ajax({
-        headers: {
-          "X-CSRFToken": "{{ csrf_token }}",
-        },
-        url: "{% url 'change_is_donor_page' %}",
-        method: "POST",
-        error: function () {
-          alert("Cannot Make Connection!");
-        }
-      });
-    });
-
   });
 </script>
 

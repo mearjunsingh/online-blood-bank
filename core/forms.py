@@ -13,10 +13,10 @@ class RequestForm(forms.ModelForm):
         model = models.Request
         fields = ['blood_group', 'for_date', 'district', 'local_level']
         widgets = {
-            'blood_group': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Blood Group'}),
-            'for_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'type': 'date'}),
-            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list': 'districts'}),
-            'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list': 'locals'}),
+            'blood_group': forms.Select(attrs={'class': 'form-control'}),
+            'for_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'district': forms.Select(attrs={'class': 'form-control'}),
+            'local_level': forms.Select(attrs={'class': 'form-control'}),
         }
 
 
@@ -30,7 +30,7 @@ class RequestUser(forms.ModelForm):
         model = models.Request
         fields = ['for_date', 'district', 'local_level']
         widgets = {
-            'for_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'type': 'date'}),
-            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list' : 'districts'}),
-            'local_level': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Local Level', 'list': 'locals'}),
+            'for_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'district': forms.Select(attrs={'class': 'form-control'}),
+            'local_level': forms.Select(attrs={'class': 'form-control'}),
         }

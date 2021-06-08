@@ -32,7 +32,7 @@
 
 <div class="body-form">
     <main class="form-signin"  style="max-width: 800px;">
-        <form novalidate action="{% url 'register_page' %}" method="POST">
+        <form action="{% url 'register_page' %}" method="POST">
             {% csrf_token %}
 
             <div class="mb-5 text-center text-danger display-3">
@@ -251,30 +251,6 @@
 
 {% block scripts %}
 
-<script>
-    $(document).ready(function() {
-    
-        var district = $('#districts');
-        $.getJSON("{% static 'js/places.json' %}", function (result) {
-          for(x in result) {
-            district.append($("<option></option>").attr("value", x));
-          }
-        });
-    
-        $('#id_district').on('change', function () {
-          var state = $(this).val(), city = $('#locals');
-          $.getJSON("{% static 'js/places.json' %}", function (result) {
-            var values = result[state];
-            city.find('option').remove();
-            if (values != undefined && values.length > 0) {
-              $(values).each(function(index, element) {
-                city.append($("<option></option>").attr("value", element));
-              });
-            }
-          });
-        });
-    
-      });
-    </script>
+{% include 'includes/populate_dropdown.html' %}
 
 {% endblock %}

@@ -43,7 +43,7 @@ def search_page(request):
         b_url = '?'
         post_list = User.objects.filter(is_donor=True).exclude(id=request.user.id).order_by('-last_login')
     if post_list.count() != 0:
-        paginator = Paginator(post_list, 10)
+        paginator = Paginator(post_list, 20)
         if 'page' in request.GET:
             q = request.GET['page']
             if q is not None and q != '' and q != '0':

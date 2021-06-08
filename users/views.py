@@ -74,7 +74,7 @@ def manage_request_page(request):
     completed_requests = Request.objects.filter(requested_by=request.user).filter(
         Q(status = 'completed') | 
         Q(status = 'canceled')
-    ).order_by('for_date')
+    ).order_by('-for_date')
     return render(request, 'requests.html', {'ongoing_requests' : ongoing_requests, 'completed_requests' : completed_requests})
 
 

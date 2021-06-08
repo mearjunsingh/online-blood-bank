@@ -9,7 +9,6 @@ from django.contrib.auth.forms import (
 from django import forms
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from PIL import Image
 
 
 GENDERS = (
@@ -69,7 +68,6 @@ class RegisterForm(UserCreationForm):
     date_of_birth = forms.DateField(label='Date Of Birth', widget=forms.DateInput(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Date Of Birth',
             'type': 'date'
         }
     ))
@@ -88,21 +86,16 @@ class RegisterForm(UserCreationForm):
     blood_group = forms.ModelChoiceField(queryset = Blood.objects.all(), label='Blood Group', widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Blood Group'
         }
     ))
-    district = forms.CharField(label='District', widget=forms.TextInput(
+    district = forms.CharField(label='District', widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'placeholder': 'District',
-            'list': 'districts'
             }
         ))
-    local_level = forms.CharField(label='Local Level', widget=forms.TextInput(
+    local_level = forms.CharField(label='Local Level', widget=forms.Select(
     attrs={
         'class': 'form-control',
-        'placeholder': 'Local Level',
-        'list': 'locals'
         }
     ))
     password1 = forms.CharField(label='Choose Password', widget=forms.PasswordInput(
@@ -149,7 +142,6 @@ class UserChangeForm(UserChangeForm):
     date_of_birth = forms.DateField(label='Date Of Birth', widget=forms.DateInput(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Date Of Birth',
             'type': 'date'
         }
     ))
@@ -168,21 +160,16 @@ class UserChangeForm(UserChangeForm):
     blood_group = forms.ModelChoiceField(queryset = Blood.objects.all(), label='Blood Group', widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Blood Group'
         }
     ))
-    district = forms.CharField(label='District', widget=forms.TextInput(
+    district = forms.CharField(label='District', widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'placeholder': 'District',
-            'list': 'districts'
         }
     ))
-    local_level = forms.CharField(label='Local Level', widget=forms.TextInput(
+    local_level = forms.CharField(label='Local Level', widget=forms.Select(
     attrs={
         'class': 'form-control',
-        'placeholder': 'Local Level',
-        'list': 'locals'
         }
     ))
 
