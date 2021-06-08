@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import render
 
+
+handler404 = 'handler404'
+handler500 = 'handler500'
 
 urlpatterns = [
     path('', include('core.urls')),
@@ -32,3 +36,9 @@ if settings.DEBUG:
 admin.site.site_header = 'Online Blood Bank'
 admin.site.index_title = 'Admin Panel'
 admin.site.site_title = 'Online Blood Bank'
+
+def handler404(request, exception=None):
+    return render(request, '404.html')
+
+def handler500(request, exception=None):
+    return render(request, '500.html')
