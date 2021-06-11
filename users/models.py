@@ -38,7 +38,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('Email Address'), unique=True)
     first_name = models.CharField(_('First Name'), max_length=254)
     last_name = models.CharField(_('Last Name'), max_length=254)
-    display_photo = models.ImageField(_('Display Photo'), upload_to=utils.user_profile_image_file)
+    display_photo = models.ImageField(_('Display Photo'), upload_to=utils.user_profile_image_file, blank=True)
     date_of_birth = models.DateField(_('Date Of Birth'))
     gender = models.CharField(_('Gender'), max_length=1, choices=GENDERS)
     blood_group = models.ForeignKey(Blood, on_delete=models.RESTRICT)
