@@ -23,14 +23,8 @@
       }
     });
 
-    function populate_dis() {
-      
-      {% if user_change.district %}
-        var state = "{{ user_change.district }}";
-      {% else %}
-        var state = $("#id_district").val();
-      {% endif %}
-
+    function populate_dis(dis) {
+      var state = dis;
       var city = $("#id_local_level");
       $.getJSON("{% static 'js/places.json' %}", function (result) {
         var values = result[state];
@@ -55,11 +49,15 @@
       });
     }
     
-    populate_dis();
-
     $("#id_district").on("change", function () {
-      populate_dis();
+      var dis = $(this).val();
+      populate_dis(dis);
     });
     
+    {% if user_change.district %}
+      var di = "{{ user_change.district }}";
+      populate_dis(di);
+    {% endif %}
+
   });
 </script>
