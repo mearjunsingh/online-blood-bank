@@ -15,19 +15,23 @@ def user_page(request, id):
     user = get_object_or_404(User, id=id)
     if user == request.user:
         return redirect('dashboard_page')
-    form = forms.RequestUser(request.POST or None)
-    msg = None
-    if form.is_valid():
-        if request.user.is_authenticated and (user != request.user):
-            obj = form.save(commit=False)
-            obj.requested_by = request.user
-            obj.donated_by = user
-            obj.blood_group = user.blood_group
-            obj.save()
-            msg = 'Successfull Submitted.'
-        else:
-            msg = 'You Must Login to Send Request.'
-    return render(request, 'profile.html', {'user' : user, 'form': form, 'msg': msg})
+    if user.is_donor:
+        form = forms.RequestUser(request.POST or None, request.FILES or None)
+        msg = None
+        if form.is_valid():
+            if request.user.is_authenticated and (user != request.user):
+                obj = form.save(commit=False)
+                obj.requested_by = request.user
+                obj.donated_by = user
+                obj.blood_group = user.blood_group
+                obj.save()
+                msg = 'Successfully submitted.'
+            else:
+                msg = 'You must login to send request.'
+        return render(request, 'profile.html', {'user' : user, 'form': form, 'msg': msg})
+    else:
+        msg = 'Donor unavailable at the moment.'
+        return render(request, 'profile.html', {'user' : user, 'msg': msg})
 
 
 def search_page(request):

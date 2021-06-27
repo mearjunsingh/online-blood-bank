@@ -52,23 +52,24 @@
                     Age: <strong>{{ user.age }}</strong>
                 </p>
                 
+                {% if form %}
               
                 <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updateProfieModal">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#requestUser">
                     Send Request
                   </button>
 
                   <!-- Modal -->
-                  <div class="modal fade" id="updateProfieModal" tabindex="-1" aria-labelledby="updateProfieModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="requestUser" tabindex="-1" aria-labelledby="requestUserLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="updateProfieModalLabel">Update Profile</h5>
+                          <h5 class="modal-title" id="requestUserLabel">Request donor</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                           
-                          <form action="{% url 'user_page' user.id %}" method="POST">
+                          <form action="{% url 'user_page' user.id %}" enctype="multipart/form-data" method="POST">
                           
                             {% include 'includes/general-form.html' %}
 
@@ -81,6 +82,8 @@
                     </div>
                   </div>
                   <!-- Modal End -->
+
+                  {% endif %}
 
             </div>
         </div>
