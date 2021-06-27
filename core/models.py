@@ -3,6 +3,7 @@ from django.db.models.deletion import RESTRICT
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
 from django.utils.text import slugify
+from users.utils import request_blood_image_file
 
 
 class Request(models.Model):
@@ -20,6 +21,7 @@ class Request(models.Model):
     blood_group = models.ForeignKey('Blood', on_delete=RESTRICT)
     district = models.CharField(max_length=254)
     local_level = models.CharField(max_length=254)
+    image = models.ImageField(upload_to=request_blood_image_file, blank=True)
     donated_by = models.ForeignKey(User, on_delete=RESTRICT, null=True, blank=True, related_name='donated_by')
     status = models.CharField(max_length=10, default='pending', choices=STATUS)
 

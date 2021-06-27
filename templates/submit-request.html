@@ -37,7 +37,7 @@
       <div class="alert alert-danger">{{ msg }}</div>
     {% endif %}
 
-    <form action="{% url 'submit_request' %}" method="POST">
+    <form action="{% url 'submit_request' %}" enctype="multipart/form-data" method="POST">
 
       {% include 'includes/general-form.html' %}
 

@@ -60,13 +60,13 @@ def search_page(request):
 
 @login_required()
 def submit_request(request):
-    form = forms.RequestForm(request.POST or None)
+    form = forms.RequestForm(data=request.POST or None, files=request.FILES or None)
     msg = None
     if form.is_valid():
         obj = form.save(commit=False)
         obj.requested_by = request.user
         obj.save()
-        msg = 'Successfull Submitted.'
+        msg = 'Successfully Submitted.'
     return render(request, 'submit-request.html', {'form': form, 'msg': msg})
 
 

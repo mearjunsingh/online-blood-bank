@@ -8,10 +8,12 @@ class RequestForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RequestForm, self).__init__(*args, **kwargs)
         self.label_suffix = ""
+
+    image = forms.ImageField(label='Image (Optional)', required=False, widget=forms.FileInput(attrs={'class': 'form-control'}))
     
     class Meta:
         model = models.Request
-        fields = ['blood_group', 'for_date', 'district', 'local_level']
+        fields = ['blood_group', 'for_date', 'district', 'local_level', 'image']
         widgets = {
             'blood_group': forms.Select(attrs={'class': 'form-control'}),
             'for_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
