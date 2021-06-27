@@ -103,6 +103,10 @@
 
 {% include 'includes/populate_dropdown.html' %}
 
+<script>
+  document.getElementById('id_image').parentNode.setAttribute('class','mb-2');
+</script>
+
 {% if form.errors %}
 <script>
   var myModal = new bootstrap.Modal(document.getElementById('updateProfieModal'), { keyboard: false });
