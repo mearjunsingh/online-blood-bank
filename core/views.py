@@ -25,6 +25,7 @@ def user_page(request, id):
                 obj.donated_by = user
                 obj.blood_group = user.blood_group
                 obj.save()
+                form = forms.RequestUser()
                 msg = 'Successfully submitted.'
             else:
                 msg = 'You must login to send request.'
@@ -70,6 +71,7 @@ def submit_request(request):
         obj = form.save(commit=False)
         obj.requested_by = request.user
         obj.save()
+        form = forms.RequestForm()
         msg = 'Successfully Submitted.'
     return render(request, 'submit-request.html', {'form': form, 'msg': msg})
 
