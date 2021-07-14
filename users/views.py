@@ -49,7 +49,7 @@ def logout_page(request):
 @login_required()
 def dashboard_page(request):
     donated = Request.objects.filter(donated_by=request.user).filter(status='completed').order_by('for_date')
-    pendings = Request.objects.filter(donated_by=request.user).exclude(status='completed').order_by('for_date')
+    pendings = Request.objects.filter(donated_by=request.user).exclude(status='completed').exclude(status='canceled').order_by('for_date')
     instance = get_object_or_404(User, email=request.user.email)
     form = UserChangeForm(request.POST or None, instance=instance)
     photo_form = PhotoForm()

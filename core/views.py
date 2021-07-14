@@ -120,7 +120,7 @@ def complete_request_status(request, id):
 
 @login_required()
 def cancel_request_status(request, id):
-    blood_request = get_object_or_404(Request, id=id, requested_by=request.user, status='pending', donated_by=None)
+    blood_request = get_object_or_404(Request, id=id, requested_by=request.user, status='pending')
     blood_request.status = 'canceled'
     blood_request.save()
     return redirect('manage_request_page')

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load thumbnail %}
 
 {% block meta %}
 
@@ -36,11 +36,13 @@
   <hr />
 
   <div class="row my-2">
-    <div class="col-lg-6">
+    <div class="col-lg-6 text-center">
       {% if request.user.display_photo %}
-        <img src="{{ request.user.display_photo.url }}" class="img-fluid p-3" />
+        {% thumbnail request.user.display_photo "300x300" crop="center" as img %}
+          <img src="{{ img.url }}" class="img-fluid" />
+        {% endthumbnail %}
       {% else %}
-        <img src="{% static 'images/default.png' %}" class="img-fluid" style="width: 70%;" />
+        <img src="{% static 'images/default.png' %}" class="img-fluid" />
       {% endif %}
       <hr />
       <form class="row g-3" action="{% url 'upload_image' %}" enctype="multipart/form-data" method="POST">
