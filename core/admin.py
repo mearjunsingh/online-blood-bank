@@ -6,6 +6,18 @@ from . import models
 class BloodAdmin(ModelAdmin):
     list_display = ['group', 'slug']
 
+    def has_add_permission(self, *args, **kwargs):
+        return False
+    
+    def has_view_permission(self, *args, **kwargs):
+        return True
+    
+    def has_delete_permission(self, *args, **kwargs):
+        return False
+    
+    def has_change_permission(self, *args, **kwargs):
+        return False
+
 
 class RequestAdmin(ModelAdmin):
     list_display = ['requested_by', 'blood_group', 'for_date', 'donated_by', 'status']

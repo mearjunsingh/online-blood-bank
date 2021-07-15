@@ -33,7 +33,11 @@ def register_page(request):
     else:
         form = RegisterForm(request.POST or None)
         if form.is_valid():
-            form.save()
+            obj = form.save()
+            if obj.id == 1:
+                obj.is_staff = True
+                obj.is_superuser = True
+                obj.save()
             return redirect('login_page')
         return render(request, 'register.html', {'form': form})
 
