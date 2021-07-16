@@ -1,5 +1,5 @@
 # Online Blood Bank
-![Online Blood Bank Thumbnail](docs/images/online-blodo-bank.png)
+![Online Blood Bank Thumbnail](docs/images/online-blood-bank.png?raw=true)
 
 An open-source project for managing blood donors and receivers. This web application can search for donors in Nepal's different districts or local levels by specific blood group.
 
