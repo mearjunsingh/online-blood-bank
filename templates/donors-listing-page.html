@@ -43,13 +43,28 @@
 {% block main %}
 
     <!-- Main Banner -->
-    <div class="container my-5">
+    <div class="container vh-100 my-5">
         
         {% include 'includes/search-form.html' with mt=3 mb=3 %}
           
         <div class="alert alert-danger my-5">
-            {% if request.GET.blood and request.GET.district and request.GET.local %}
-                Showing Results: <strong>{{ blood.group }}</strong> in <strong>{{ request.GET.district }}, {{ request.GET.local }}</strong>
+            {% if request.GET.blood or request.GET.district or request.GET.local %}
+                Showing Results: 
+                {% if blood %}
+                    <strong>{{ blood.group }}</strong>
+                {% else %}
+                    <strong>All Donors</strong>
+                {%endif %}
+                {% if request.GET.district %}
+                    in <strong>{{ request.GET.district }}</strong>
+                {% else %}
+                    in <strong>All Districts</strong>
+                {%endif %}
+                {% if request.GET.local %}
+                    - <strong>{{ request.GET.local }}</strong>
+                {% else %}
+                    - <strong>All Localities</strong>
+                {%endif %}
             {% else %}
                 Showing all available donors
             {% endif %}

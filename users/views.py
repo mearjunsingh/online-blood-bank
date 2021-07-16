@@ -37,6 +37,7 @@ def register_page(request):
             if obj.id == 1:
                 obj.is_staff = True
                 obj.is_superuser = True
+                obj.is_donor = False
                 obj.save()
             return redirect('login_page')
         return render(request, 'register.html', {'form': form})

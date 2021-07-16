@@ -36,22 +36,31 @@ def user_page(request, id):
 
 
 def search_page(request):
-    if 'blood' in request.GET and 'district' in request.GET and 'local' in request.GET:
+    user_list = User.objects.filter(is_donor=True).filter(is_active=True).exclude(id=request.user.id).order_by('-last_login')
+    b_url = '?'
+    blood = None
+    if 'blood' in request.GET:
         blood = request.GET.get('blood')
-        blood = get_object_or_404(Blood, slug=blood)
+        if blood is not None and blood != '':
+            blood = get_object_or_404(Blood, slug=blood)
+            user_list = user_list.filter(blood_group=blood)
+            b_url += f'blood={blood.slug}&'
+    if 'district' in request.GET:
         district = request.GET.get('district')
+        if district is not None and district != '':
+            user_list = user_list.filter(district__iexact=district)
+            b_url += f'district={district}&'
+    if 'local' in request.GET:
         local = request.GET.get('local')
-        b_url = '?blood=' + blood.slug + '&district=' + district + '&local=' + local + '&'
-        post_list = User.objects.filter(is_donor=True).filter(blood_group=blood).filter(district__iexact=district).filter(local_level__iexact=local).exclude(id=request.user.id).order_by('-last_login')
-    else:
-        blood = None
-        b_url = '?'
-        post_list = User.objects.filter(is_donor=True).exclude(id=request.user.id).order_by('-last_login')
-    if post_list.count() != 0:
-        paginator = Paginator(post_list, 20)
+        if local is not None and local != '':
+            user_list = user_list.filter(local_level__iexact=local)
+            b_url = f'local={local}&'
+
+    if user_list.count() != 0:
+        paginator = Paginator(user_list, 20)
         if 'page' in request.GET:
-            q = request.GET['page']
-            if q is not None and q != '' and q != '0':
+            page = request.GET['page']
+            if page is not None and page != '' and page != '0':
                 page_number = request.GET.get('page')
             else:
                 page_number = 1
