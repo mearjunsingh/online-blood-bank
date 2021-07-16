@@ -1,4 +1,6 @@
 # Online Blood Bank
+![Online Blood Bank Thumbnail](docs/images/online-blodo-bank.png)
+
 An open-source project for managing blood donors and receivers. This web application can search for donors in Nepal's different districts or local levels by specific blood group.
 
 [More Info Here](https://arjunsingh.com.np/online-blood-bank)
@@ -44,7 +46,7 @@ An open-source project for managing blood donors and receivers. This web applica
     ```bash
     python manage.py createsuperuser
     ```
-    But this is uncomfortable because this project requires a lot of imformation. To solve this problem, this project automatically promotes the **FIRST USER** as **SUPERUSER**. Also by default, admin is **not** listed as donor.
+    But this is uncomfortable because this project requires a lot of information. To solve this problem, this project automatically promotes the **FIRST USER** as **SUPERUSER**. Also by default, admin is **NOT** listed as donor.
 
     *SKIP THIS STEP, RUN THE SERVER (AS MENTIONED IN STEP 8) AND REGISTER FROM THE BROWSER ITSELF*
 ---
