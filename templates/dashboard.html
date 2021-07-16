@@ -39,10 +39,10 @@
     <div class="col-lg-6 text-center">
       {% if request.user.display_photo %}
         {% thumbnail request.user.display_photo "300x300" crop="center" as img %}
-          <img src="{{ img.url }}" class="img-fluid" />
+          <img src="{{ img.url }}" class="img-fluid rounded" />
         {% endthumbnail %}
       {% else %}
-        <img src="{% static 'images/default.png' %}" class="img-fluid" />
+        <img src="{% static 'images/default.png' %}" class="img-fluid rounded" />
       {% endif %}
       <hr />
       <form class="row g-3" action="{% url 'upload_image' %}" enctype="multipart/form-data" method="POST">
@@ -282,13 +282,7 @@
             <td>{{ pending.for_date }}</td>
             <td>{{ pending.district }}, {{ pending.local_level }}</td>
             <td> <a class="alert-link" style="text-decoration: none;" href="{% url 'user_page' pending.requested_by.id %}">{{ pending.requested_by.first_name }} {{ pending.requested_by.last_name }}</a> </td>
-            <td>
-              {% if pending.status == 'verified' %}
-                {{ pending.requested_by.phone_number }}
-              {% else %}
-                Not Verified Yet!
-              {% endif %}
-            </td>
+            <td>{{ pending.requested_by.phone_number }}</td>
             <td>
               {% if pending.status == 'pending' %}
                 <a href="{% url 'verify_request_status' pending.id %}" class="btn btn-sm btn-danger">Verify</a>
