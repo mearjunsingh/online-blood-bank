@@ -132,3 +132,9 @@ MEDIA_ROOT = 'media/'
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = '/accounts/login/'
 LOGOUT_REDIRECT_URL ='/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True

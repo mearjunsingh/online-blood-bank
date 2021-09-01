@@ -35,8 +35,8 @@
       {% if msg %}
         <div class="alert alert-danger">{{ msg }}</div>
       {% endif %}
-        <div class="row my-2">
-            <div class="col-lg-6 text-center">
+        <div class="row mb-2">
+            <div class="col-lg-6 mb-2 text-center">
               {% if user.display_photo %}
                 {% thumbnail user.display_photo "300x300" crop="center" as img %}
                   <img src="{{ img.url }}" class="img-fluid rounded shadow-lg" />
@@ -45,7 +45,7 @@
                 <img src="{% static 'images/default.png' %}" class="img-fluid" />
               {% endif %}
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-2">
                 <h2 class="display-3 fw-bold">{{ user.first_name }} {{ user.last_name }}</h2>
                 <p class="display-6">
                     Blood Group: <strong>{{ user.blood_group.group }}</strong> <br>

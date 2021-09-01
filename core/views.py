@@ -5,6 +5,7 @@ User = get_user_model()
 from django.core.paginator import Paginator
 from . import forms
 from django.contrib.auth.decorators import login_required
+from users.utils import email_donor, email_reciever
 
 
 def home_page(request):
@@ -25,6 +26,7 @@ def user_page(request, id):
                 obj.donated_by = user
                 obj.blood_group = user.blood_group
                 obj.save()
+                email_donor(obj)
                 form = forms.RequestUser()
                 msg = 'Successfully submitted.'
             else:
@@ -97,6 +99,7 @@ def offer_help(request, id):
         blood_request.donated_by = request.user
         blood_request.status = 'verified'
         blood_request.save()
+        email_reciever(blood_request)
     return redirect('pending_requests')
 
 
@@ -106,6 +109,7 @@ def verify_request_status(request, id):
     if blood_request.requested_by != request.user:
         blood_request.status = 'verified'
         blood_request.save()
+        email_reciever(blood_request)
     return redirect('dashboard_page')
 
 

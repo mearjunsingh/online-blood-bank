@@ -1,0 +1,19 @@
+{% autoescape off %}
+<h3 style="color: red;">A new donation request:</h3>
+<p>
+    <strong>From</strong> <br>
+    ---------- <br>
+    <strong>Name :</strong> {{ context.requested_by.first_name }} {{ context.requested_by.last_name }} <br>
+    <strong>Email :</strong> {{ context.requested_by.email }} <br>
+    <strong>Phone :</strong> {{ context.requested_by.phone_number }} <br>
+    ----------
+</p>
+<p>
+    <strong>For Date :</strong> {{ context.for_date }} <br>
+    <strong>Location :</strong> {{ context.district }} {{ context.local_level }} <br>
+</p>
+<p>
+    Login to dashboard to view the request. <br>
+    <span style="color: red;">Also please call the reciever to confirm or cancel the donation, may be there is an emergency.</span>
+</p>
+{% endautoescape %}

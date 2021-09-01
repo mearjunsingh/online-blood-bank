@@ -1,0 +1,19 @@
+{% autoescape off %}
+<h3 style="color: red;">Finally, found new donor:</h3>
+<p>
+    <strong>Donor</strong> <br>
+    ---------- <br>
+    <strong>Name :</strong> {{ context.donated_by.first_name }} {{ context.donated_by.last_name }} <br>
+    <strong>Email :</strong> {{ context.donated_by.email }} <br>
+    <strong>Phone :</strong> {{ context.donated_by.phone_number }} <br>
+    ----------
+</p>
+<p>
+    <strong>For Date :</strong> {{ context.for_date }} <br>
+    <strong>Location :</strong> {{ context.district }} {{ context.local_level }} <br>
+</p>
+<p>
+    Login to dashboard to view the donor details. <br>
+    <span style="color: red;">Also please call the donor to confirm or cancel the donation, may be there is an emergency.</span>
+</p>
+{% endautoescape %}
