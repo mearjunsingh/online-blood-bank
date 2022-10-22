@@ -56,5 +56,5 @@ An open-source project for managing blood donors and receivers. This web applica
 9. Then locate http://127.0.0.1:8000/ in your favorite web browser.
 ---
 
-## Contributing
+## Contributing to project 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
