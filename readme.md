@@ -1,5 +1,5 @@
 # Online Blood Bank #Nepal
-![Online Blood Bank Thumbnail](https://arjunsingh.com.np/images/portfolio/online_blood_bank.jpg)
+![Online Blood Bank Thumbnail](https://arjunsingh.com.np/images/portfolio/online-blood-bank.png)
 
 An open-source project for managing blood donors and receivers. This web application can search for donors in Nepal's different districts or local levels by specific blood group.
 
