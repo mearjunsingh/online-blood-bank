@@ -122,11 +122,11 @@ USE_TZ = True
 
 home_folder = os.environ.get("STATIC_AND_MEDIA_FILE_FOLDER")
 
-STATIC_URL = "online-blood-bank/assets/"
+STATIC_URL = "assets/"
 STATIC_ROOT = f"/home/{home_folder}/online-blood-bank/assets/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_URL = "online-blood-bank/media/"
+MEDIA_URL = "media/"
 MEDIA_ROOT = f"/home/{home_folder}/online-blood-bank/media/"
 
 
