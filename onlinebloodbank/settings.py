@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", default=0)))
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["demo.arjunsingh.com.np", "127.0.0.1"]
 
 
 # Application definition
@@ -122,17 +122,20 @@ USE_TZ = True
 
 home_folder = os.environ.get("STATIC_AND_MEDIA_FILE_FOLDER")
 
-STATIC_URL = "assets/"
+STATIC_URL = "online-blood-bank/assets/"
 STATIC_ROOT = f"/home/{home_folder}/online-blood-bank/assets/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_URL = "media/"
+MEDIA_URL = "online-blood-bank/media/"
 MEDIA_ROOT = f"/home/{home_folder}/online-blood-bank/media/"
 
 
+from django.urls import reverse_lazy
+
 AUTH_USER_MODEL = "users.CustomUser"
-LOGIN_URL = "/accounts/login/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_URL = reverse_lazy("login_page")
+LOGIN_REDIRECT_URL = reverse_lazy("dashboard_page")
+LOGOUT_REDIRECT_URL = reverse_lazy("home_page")
 
 
 # Email configuration
